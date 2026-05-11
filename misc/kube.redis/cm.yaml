@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-conf
+data:
+  redis.conf: |
+    appendonly yes
+    cluster-enabled yes
+    logfile /var/log/redis.log
+    cluster-config-file /var/lib/redis/nodes.conf
+    dir /var/lib/redis
+#   port 6380

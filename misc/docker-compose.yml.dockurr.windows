@@ -1,0 +1,26 @@
+version: "3"
+services:
+  win:
+    image: dockurr/windows
+    container_name: windows
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 8006:8006
+      - 3389:3389/tcp
+      - 3389:3389/udp
+    stop_grace_period: 2m
+    restart: on-failure
+    environment:
+      VERSION: "tiny10"
+      RAM_SIZE: "16G"
+      CPU_CORES: "8"
+#     DISK_SIZE: "45G" # default: 64
+      TZ: "Asia/Taipei"
+      KVM: N
+    volumes:
+#     - /var/win:/storage
+      - /mnt/d/DOCKURR:/storage # new config
+# disable dynamic memory if ran in hyper-v

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ubuntu
+  name: ubuntu
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ubuntu
+  template:
+    metadata:
+      labels:
+        app: ubuntu
+    spec:
+      containers:
+      - image: ubuntu:18.04
+        name: ubuntu
+        command: ["/bin/bash", "-c"]
+        args:
+          - apt update;
+            apt install -y gnupg2 wget netcat apt-utils dnsutils tmux watch curl iputils-ping iproute2 nmap vim mlocate lsof apt-file telnet;
+            wget -O - https://facebook.github.io/mcrouter/debrepo/bionic/PUBLIC.KEY |  apt-key add;
+            echo 'deb https://facebook.github.io/mcrouter/debrepo/bionic bionic contrib' >> /etc/apt/sources.list;
+            curl -fsSl https://gitlab.com/ernie18a/dotfiles/-/raw/main/home/.bash_profile -o ~/.bashrc ;
+            updatedb;
+            apt update;
+            apt-get install -y memcached mcrouter;
+            apt list > ~/.APT;
+            tail -f /dev/null;

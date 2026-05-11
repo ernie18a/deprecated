@@ -1,0 +1,16 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-all-ingress
+spec:
+# podSelector: {}
+  podSelector:
+    matchLabels:
+      app: psql4demo
+#     role: psql4demo
+  ingress:
+  - {}
+  policyTypes:
+  - Ingress
+

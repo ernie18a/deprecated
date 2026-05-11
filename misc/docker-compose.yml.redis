@@ -1,0 +1,15 @@
+version: "3"
+services:
+  redis:
+    image: redis
+    container_name: redis
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    volumes:
+      - /var/CCCC/redis:/data
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "6379:6379"

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fluentd
+spec:
+  ports:
+  - name: fluentd-tcp
+    port: 24224
+    protocol: TCP
+    targetPort: fluentd-tcp
+  - name: fluentd-udp
+    port: 24224
+    protocol: UDP
+    targetPort: fluentd-udp
+  selector:
+    yaml: fluentd
+  type: ClusterIP

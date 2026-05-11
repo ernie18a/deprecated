@@ -1,0 +1,8 @@
+---
+- name: c2 echo
+  shell: echo c2
+  register: output
+
+- name: c2 Print
+  debug:
+    var: output.stdout

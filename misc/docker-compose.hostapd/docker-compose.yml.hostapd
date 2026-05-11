@@ -1,0 +1,10 @@
+version: '3'
+services:
+ hostapd:
+   build: .
+   network_mode: "host"
+   volumes:
+     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+   cap_add:
+     - NET_ADMIN
+     - SYS_ADMIN

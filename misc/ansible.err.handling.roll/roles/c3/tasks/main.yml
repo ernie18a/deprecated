@@ -1,0 +1,27 @@
+---
+- name: command echo
+  shell: echo c3
+  register: echo_result
+  ignore_errors: yes # note
+- name: command ls 
+  shell: ls /NOPE
+  register: ls_result
+  ignore_errors: yes
+
+- name: Print echo result
+  debug:
+    var: echo_result.stdout
+
+- name: Print ls result
+  debug:
+    var: ls_result.stdout
+
+- name: Include none.zero role
+  include_role:
+    name: none.zero
+  when: ls_result.rc != 0
+
+# name: Include none.zero role
+# include_role:
+#   name: none.zero
+# when: echo_result.rc != 0

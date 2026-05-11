@@ -1,0 +1,28 @@
+version: "3"
+services:
+  gitlab:
+    sysctls:
+      net.core.somaxconn: 1024
+    hostname: "gitlab.BBBB.tw"
+    image: gitlab/gitlab-ce:12.9.2-ce.0
+    container_name: gitlab
+    restart: always
+#   deploy:
+#     restart_policy:
+#       condition: on-failure
+#       max_attempts: 2
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    volumes:
+      - /var/BBBB/etc/gitlab:/etc/gitlab
+      - /var/BBBB/log/gitlab:/var/log/gitlab
+      - /var/BBBB/opt/gitlab:/var/opt/gitlab
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "22:22"
+      - "80:80"
+      - "443:443"
+# note: "gitlab:password:reset[root]"

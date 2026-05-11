@@ -1,0 +1,37 @@
+# helm repo add aliyun https://aliacs-app-catalog.oss-cn-hangzhou.aliyuncs.com/charts-incubator # temporary unavaliable?
+curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+helm completion bash > /etc/bash_completion.d/helm
+helm repo add awx-operator https://ansible.github.io/awx-operator
+helm repo add azure https://marketplace.azurecr.io/helm/v1/repo
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo add bitnami-labs  https://bitnami-labs.github.io/sealed-secrets
+helm repo add brigadecore https://brigadecore.github.io/charts
+helm repo add calico https://docs.projectcalico.org/charts
+helm repo add cilium https://helm.cilium.io
+helm repo add confluentinc https://packages.confluent.io/helm
+helm repo add cyberark https://cyberark.github.io/helm-charts
+helm repo add elastic https://helm.elastic.co
+helm repo add fluent https://fluent.github.io/helm-charts
+helm repo add gitlab https://charts.gitlab.io
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo add harbor https://helm.goharbor.io
+helm repo add harbor https://helm.goharbor.io
+helm repo add harbor https://helm.goharbor.io
+helm repo add hashicorp https://helm.releases.hashicorp.com
+helm repo add incubator https://charts.helm.sh/incubator
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo add istio https://istio-release.storage.googleapis.com/charts
+helm repo add jetstack https://charts.jetstack.io
+helm repo add k8tz https://k8tz.github.io/k8tz
+helm repo add kedacore https://kedacore.github.io/charts
+helm repo add kube-vip https://kube-vip.github.io/helm-charts
+helm repo add metallb https://metallb.github.io/metallb
+helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server
+helm repo add minio https://charts.min.io
+helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
+helm repo add openebs-former https://openebs.github.io/charts
+helm repo add openebs https://openebs.github.io/openebs
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add traefik https://traefik.github.io/charts
+helm repo add vsphere-cpi https://kubernetes.github.io/cloud-provider-vsphere
+helm repo update &>/dev/null

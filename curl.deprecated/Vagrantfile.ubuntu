@@ -1,0 +1,17 @@
+Vagrant.configure("2") do |config|  # https://docs.vagrantup.com.
+  config.vm.box = "roboxes/ubuntu1810"
+    config.vm.network "public_network"
+    config.vm.provider "hyperv" do |h|
+      h.enable_virtualization_extensions = true
+      h.ip_address_timeout = 20
+      h.cpus = 4
+      h.maxmemory = 4096
+      h.vm_integration_services = {
+        guest_service_interface: true,
+        CustomVMSRV: true
+      }
+    end
+    config.vm.provision "shell", inline: <<-SHELL
+      curl -fsSL https://gitlab.com/ernie18a/dotfiles/-/raw/main/curl/e.vagrant.sh | bash   
+    SHELL
+end

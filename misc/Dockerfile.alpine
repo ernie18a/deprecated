@@ -1,0 +1,6 @@
+FROM alpine
+RUN \
+apk update ; \
+apk add curl file vim procps bash busybox-extras ; \
+curl -fsSl https://gitlab.com/ernie18a/dotfiles/-/raw/main/home/.bash_profile -o ~/.bashrc
+ENTRYPOINT tail -f

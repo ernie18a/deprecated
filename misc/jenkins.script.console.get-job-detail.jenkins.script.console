@@ -1,0 +1,11 @@
+import jenkins.model.Jenkins
+
+def jobName = "<JOB_NAME>"
+def job = Jenkins.instance.getItem(jobName)
+
+if (job) {
+    println "Job Name: ${job.name}"
+    println "Job Config: ${job.configFile.asString()}"
+} else {
+    println "Job not found: ${jobName}"
+}

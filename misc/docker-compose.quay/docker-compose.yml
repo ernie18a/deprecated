@@ -1,0 +1,22 @@
+version: "3"
+services:
+  postgres:
+    image: registry.redhat.io/quay/clair-rhel8:v3.5.1
+#   image: registry.redhat.io/quay/clair-rhel8
+    container_name: clairv4
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    environment:
+     - 'CLAIR_CONF=/clair/config.yaml'
+     - 'CLAIR_MODE=combo'
+    volumes:
+      - /etc/clairv4/config:/clair:Z
+    command: bash -c " 
+                       tail -f /dev/null
+                     "
+
+#     - "8081:8081"
+#     - "8089:8089"

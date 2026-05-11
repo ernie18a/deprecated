@@ -1,0 +1,9 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: demo.nginx.deny
+spec:
+  podSelector:
+    matchLabels:
+      app: psql4demo
+  ingress: []

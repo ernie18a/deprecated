@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: nginx-ernie18a
+spec:
+  type: NodePort
+  ports:
+  - name: eighty
+    port: 80 # no port no services.
+    nodePort: 30888
+  selector:
+    app: nginx-ernie18a

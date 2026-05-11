@@ -1,0 +1,9 @@
+---
+- name: echo
+  script: ../../../scripts/echo.sh
+  environment:
+    RD: "{{ RD.stdout }}"
+  register: RD
+- name: debug
+  debug:
+    var: RD.stdout_lines

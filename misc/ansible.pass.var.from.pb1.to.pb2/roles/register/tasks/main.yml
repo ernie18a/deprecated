@@ -1,0 +1,7 @@
+---
+- name: register
+  script: ../../../scripts/register.sh
+  register: RD
+# name: debug
+# debug:
+#   var: RD.stdout_lines

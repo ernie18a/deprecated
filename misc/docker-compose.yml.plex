@@ -1,0 +1,24 @@
+version: '3'
+services:
+  plex:
+    container_name: plex
+    network_mode: host
+    image: plexinc/pms-docker
+#   restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    environment:
+     - PLEX_CLAIM=claim-kLCVC1egHpM--mq7PY3h # changed everytime
+     - TZ=Asia/Taipei
+     - HOSTNAME=Plex
+#    - CHANGE_CONFIG_DIR_OWNERSHIP=false
+     - ALLOWED_NETWORKS=0.0.0.0/0
+    volumes:
+      - /var/lib/transmission-daemon/downloads:/data
+############################
+# https://www.plex.tv/claim/
+# apt install -y pciutils
+# lspci -v -s $(lspci | grep VGA | cut -d" " -f 1)

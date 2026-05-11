@@ -1,0 +1,2 @@
+- mind kgas's ingress type LoadBalancer and NodePort
+- pod's svc=ClusterIP is fine😎

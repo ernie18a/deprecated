@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  volumes:
+    - name: nv
+      persistentVolumeClaim:
+        claimName: nginx
+  containers:
+  - image: nginx
+    name: nginx
+    volumeMounts:
+    - mountPath: /its.in.the.container
+      name: nv

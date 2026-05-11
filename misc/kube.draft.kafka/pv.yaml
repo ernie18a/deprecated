@@ -1,0 +1,71 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: kafka0
+spec:
+  storageClassName: kafka
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: "/nfs/kafka0"
+    server: 192.168.1.189
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: kafka1
+spec:
+  storageClassName: kafka
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: "/nfs/kafka1"
+    server: 192.168.1.189
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: kafka2
+spec:
+  storageClassName: kafka
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: "/nfs/kafka2"
+    server: 192.168.1.189
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: kafka3
+spec:
+  storageClassName: kafka
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: "/nfs/kafka3"
+    server: 192.168.1.189
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: kafka4
+spec:
+  storageClassName: kafka
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: "/nfs/kafka4"
+    server: 192.168.1.189
+

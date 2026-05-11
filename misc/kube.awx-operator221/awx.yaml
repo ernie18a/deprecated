@@ -1,0 +1,21 @@
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx
+spec:
+  service_type: LoadBalancer
+  admin_password_secret: awx-admin-password2
+# ingress_type: ingress
+# hostname: awx.awx
+# ingress_tls_secret: awx-tls
+# ingress_class_name: nginx
+  image: 172.16.169.247:5000/ansible/awx
+  image_pull_policy: IfNotPresent
+  image_version: 22.3.0
+  postgres_image: 172.16.169.247:5000/ansible/postgres
+  postgres_image_version: "13"
+  redis_image: 172.16.169.247:5000/ansible/redis
+  redis_image_version: "7"
+  ee_images:
+    - name: custom-awx-ee
+      image: 172.16.169.247:5000/ansible/awx-ee

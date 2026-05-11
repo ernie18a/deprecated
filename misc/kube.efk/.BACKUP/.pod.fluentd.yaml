@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fluentd
+spec:
+  containers:
+  - name: fluentd
+    image: fluent/fluentd:edge
+    ports:
+    - containerPort: 24224
+      name: tcp
+      protocol: TCP
+    - containerPort: 24224
+      name: udp
+      protocol: UDP

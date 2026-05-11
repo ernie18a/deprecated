@@ -1,0 +1,44 @@
+version: "3"
+services:
+  web:
+    image: nginx:mainline-alpine
+    container_name: web
+    hostname: web
+    restart: always
+    ports:
+      - "80:80"
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: 127.0.0.1:24224
+        tag: httpd.access
+  fluentd:
+    build: .
+    container_name: fluentd
+    hostname: fluentd
+    restart: always
+    volumes:
+      - ./fluent.conf:/fluentd/etc/fluent.conf
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
+    container_name: elasticsearch
+    hostname: elasticsearch
+    restart: always
+    volumes:
+      - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    environment:
+      - "discovery.type=single-node"
+    expose:
+      - "9200"
+    ports:
+      - "9200:9200"
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.15.1
+    container_name: kibana
+    hostname: kibana
+    restart: always
+    ports:
+      - "5601:5601"

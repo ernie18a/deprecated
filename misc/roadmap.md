@@ -1,0 +1,11 @@
+- user o n user ecdz, ln -s /g work with ggrca.
+- vnp, vbp, v*p prevent push current repo(directory)
+- setup GS similer to GRCA
+- roadmap hotkey
+- ask 41 to refer sshrc and create a thing for `source ..... /dev/stdin ......`
+- add source brc at front of watch alies if there is one, 
+- fix user's .config/helm from 1.helm.sh
+  - user need to helm repo update to read it.
+- remove some command from " git push " related command.
+- add envsubst for metallb ip range
+  - add envsubst to ~/.G/misc/deploy/kube.ing/ing.yaml for preciseness host name 

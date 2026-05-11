@@ -1,0 +1,18 @@
+services:
+  transmission:
+    image: lscr.io/linuxserver/transmission:latest
+    container_name: transmission
+    environment:
+      - PUID=1001 #
+      - PGID=1001 #
+      - TZ=Asia/Taipei
+      - USER=e
+      - PASS=3
+    volumes:
+      - ./config:/config
+      - /home/ubuntu/.complete:/downloads/complete #
+      - /home/ubuntu/.incomplete:/downloads/incomplete #
+    ports:
+      - 8091:9091 #
+      - 41413:41413 #
+      - 41413:41413/udp #

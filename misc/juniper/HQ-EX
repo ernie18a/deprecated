@@ -1,0 +1,451 @@
+set version 12.3R4.6
+set system host-name 8F-Outside-SW
+set system auto-snapshot
+set system time-zone Asia/Taipei
+set system authentication-order radius
+set system authentication-order password
+set system root-authentication encrypted-password "$1$P5yZirW/$CuCD8m3yzwqxCyqbj5XqU/"
+set system name-server 10.1.24.1
+set system login class Monitor permissions clear
+set system login class Monitor permissions configure
+set system login class Monitor permissions interface-control
+set system login class Monitor permissions secret
+set system login class Monitor permissions view
+set system login class Monitor permissions view-configuration
+set system login class Monitor allow-configuration-regexps "interfaces .*"
+set system login user ernie uid 2009
+set system login user ernie class super-user
+set system login user ernie authentication encrypted-password "$1$bssTa63D$HQfUME/d4SwNVuP/xFtFb1"
+set system login user jacko uid 2010
+set system login user jacko class super-user
+set system login user jacko authentication encrypted-password "$1$RYssddb9$Y9MWZFEPPNDl/L29l90Wx/"
+set system login user monitor uid 2006
+set system login user monitor class Monitor
+set system login user monitor authentication encrypted-password "$1$NI.wUsjx$Vau0EPbhkIpwkIjAcJ7tm0"
+set system login user monitor authentication ssh-rsa "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC4cGa2+6gOB/yrCCkVgTv0YDy1uhtULv/1XUA4MR+J9QIlUCxiGsn+RvVnHTt77KXhU4WAnQ+ePATFtUSLgHxsVKrJVaiNqyfnLx4Ka+7Dt3oNzQvCp2YgJE56Mbb0OMLBXM9P8zN3rxq51XgNj6B9XnP+MueFiINS6ZGTK2NmWB0cBE0lBahsklZK10+otXX+608b2IHCYWuVUX0u9Z2TnObtGpX0KyUb/wN4ITilCpWyjY7773ubroE/iXIRfKf9s/mdd1LoFtHf0uyLMmbk4x8G/JI8h4Fib8qrISVNNazWgROUlTRIofaq6HxulQ0k4IarZd+UlD+tw4RCpZeT monitor@ansible01.uitox-inside.com"
+set system services ssh protocol-version v2
+set system services netconf ssh
+set system services dhcp traceoptions file dhcp_logfile
+set system services dhcp traceoptions level all
+set system services dhcp traceoptions flag all
+set system syslog user * any emergency
+set system syslog file messages any notice
+set system syslog file messages authorization info
+set system syslog file interactive-commands interactive-commands any
+set system max-configurations-on-flash 49
+set system commit synchronize
+set system ntp boot-server 10.1.24.245
+set system ntp server 10.1.24.245
+set chassis aggregated-devices ethernet device-count 32
+set chassis alarm management-ethernet link-down ignore
+set chassis auto-image-upgrade
+set interfaces ge-0/0/0 description " To 8FCoreSW "
+set interfaces ge-0/0/0 ether-options 802.3ad ae0
+set interfaces ge-0/0/1 description " EMB001 "
+set interfaces ge-0/0/1 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/2 description " EMB002 "
+set interfaces ge-0/0/2 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/3 description " EMB003 "
+set interfaces ge-0/0/3 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/4 description " EMB004 "
+set interfaces ge-0/0/4 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/5 description " EMB005 "
+set interfaces ge-0/0/5 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/6 description " EMB006 "
+set interfaces ge-0/0/6 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/7 description " EMB007 "
+set interfaces ge-0/0/7 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/8 description " EMB008 "
+set interfaces ge-0/0/8 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/9 description " EMB009 "
+set interfaces ge-0/0/9 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/10 description " EMB010 "
+set interfaces ge-0/0/10 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/11 description " EMB011 "
+set interfaces ge-0/0/11 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/12 description " EMB012 "
+set interfaces ge-0/0/12 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/13 description " EMB013 "
+set interfaces ge-0/0/13 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/14 description " EMB014 "
+set interfaces ge-0/0/14 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/15 description " EMB015 "
+set interfaces ge-0/0/15 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/16 description " EMB016 "
+set interfaces ge-0/0/16 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/17 description " EMB017 "
+set interfaces ge-0/0/17 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/18 description " EMB018 "
+set interfaces ge-0/0/18 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/19 description " EMB019 "
+set interfaces ge-0/0/19 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/20 description " EMB020 "
+set interfaces ge-0/0/20 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/21 description " EMB021 "
+set interfaces ge-0/0/21 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/22 description " EMB022 "
+set interfaces ge-0/0/22 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/23 description " EMB023 "
+set interfaces ge-0/0/23 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/24 description " EMB024 "
+set interfaces ge-0/0/24 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/25 description " EMB025 "
+set interfaces ge-0/0/25 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/26 description " EMB026 "
+set interfaces ge-0/0/26 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/27 description " EMB027 "
+set interfaces ge-0/0/27 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/28 description " EMB028 "
+set interfaces ge-0/0/28 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/29 description " EMB029 "
+set interfaces ge-0/0/29 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/30 description " EMB030 "
+set interfaces ge-0/0/30 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/31 description " EMB031 "
+set interfaces ge-0/0/31 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/32 description " EMB032 "
+set interfaces ge-0/0/32 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/33 description " EMB033 "
+set interfaces ge-0/0/33 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/34 description " EMB034 "
+set interfaces ge-0/0/34 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/35 description " EMB035 "
+set interfaces ge-0/0/35 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/36 description " EMB036 "
+set interfaces ge-0/0/36 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/37 description " EMB037 "
+set interfaces ge-0/0/37 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/38 description " EMB038 "
+set interfaces ge-0/0/38 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/39 description " EMB039 "
+set interfaces ge-0/0/39 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/40 description " EMB040 "
+set interfaces ge-0/0/40 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/41 description " EMB041 "
+set interfaces ge-0/0/41 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/42 description " EMB042 "
+set interfaces ge-0/0/42 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/43 description " EMB043 "
+set interfaces ge-0/0/43 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/44 description " EMB044 "
+set interfaces ge-0/0/44 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/45 description " EMB045 "
+set interfaces ge-0/0/45 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/46 description " EMB046 "
+set interfaces ge-0/0/46 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-0/0/47 description " EMB047 "
+set interfaces ge-0/0/47 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/0 description " To 8FCoreSW "
+set interfaces ge-1/0/0 ether-options 802.3ad ae0
+set interfaces ge-1/0/1 description " EMB048 "
+set interfaces ge-1/0/1 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/2 description " EMB049 "
+set interfaces ge-1/0/2 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/3 description " EMB050 "
+set interfaces ge-1/0/3 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/4 description " EMB051 "
+set interfaces ge-1/0/4 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/5 description " EMB052 "
+set interfaces ge-1/0/5 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/6 description " EMB053 "
+set interfaces ge-1/0/6 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/7 description " EMB054 "
+set interfaces ge-1/0/7 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/8 description " EMB055 "
+set interfaces ge-1/0/8 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/9 description " EMB056 "
+set interfaces ge-1/0/9 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/10 description " EMB057 "
+set interfaces ge-1/0/10 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/11 description " EMB058 "
+set interfaces ge-1/0/11 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/12 description " EMB059 "
+set interfaces ge-1/0/12 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/13 description " EMB060 "
+set interfaces ge-1/0/13 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/14 description " EMB061 "
+set interfaces ge-1/0/14 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/15 description " EMB062 "
+set interfaces ge-1/0/15 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/16 description " EMB063 "
+set interfaces ge-1/0/16 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-1/0/17 description " EMB064 "
+set interfaces ge-1/0/17 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-1/0/18 description " EMB065 "
+set interfaces ge-1/0/18 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/19 description " EMB066 "
+set interfaces ge-1/0/19 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-1/0/20 description " EMB067 "
+set interfaces ge-1/0/20 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/21 description " EMB068 "
+set interfaces ge-1/0/21 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-1/0/22 description " EMB069 "
+set interfaces ge-1/0/22 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/23 description " EMB070 "
+set interfaces ge-1/0/23 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-1/0/24 description " EMB071 "
+set interfaces ge-1/0/24 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/25 description " EMB072 "
+set interfaces ge-1/0/25 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/26 description " EMB073 "
+set interfaces ge-1/0/26 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/27 description " EMB074 "
+set interfaces ge-1/0/27 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/28 description " EMB075 "
+set interfaces ge-1/0/28 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/29 description " EMB076 "
+set interfaces ge-1/0/29 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/30 description " EMB077 "
+set interfaces ge-1/0/30 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/31 description " EMB078 "
+set interfaces ge-1/0/31 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/32 description " EMB079 "
+set interfaces ge-1/0/32 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/33 description " EMB080 "
+set interfaces ge-1/0/33 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/34 description " EMB081 "
+set interfaces ge-1/0/34 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/35 description " EMB082 "
+set interfaces ge-1/0/35 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/36 description " EMB083 "
+set interfaces ge-1/0/36 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/37 description " EMB084 "
+set interfaces ge-1/0/37 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/38 description " EMB085 "
+set interfaces ge-1/0/38 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/39 description " EMB086 "
+set interfaces ge-1/0/39 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-1/0/40 description " EMB087 "
+set interfaces ge-1/0/40 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/41 description " EMB088 "
+set interfaces ge-1/0/41 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-1/0/42 description " EMB089 "
+set interfaces ge-1/0/42 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/43 description " EMB090 "
+set interfaces ge-1/0/43 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/44 description " EMB091 "
+set interfaces ge-1/0/44 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/45 description " EMB092 "
+set interfaces ge-1/0/45 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/46 description " EMB093 "
+set interfaces ge-1/0/46 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/47 description " EMB094 "
+set interfaces ge-1/0/47 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/0 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-2/0/1 description " EMB095 "
+set interfaces ge-2/0/1 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/2 description " EMB096 "
+set interfaces ge-2/0/2 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/3 description " EMB097 "
+set interfaces ge-2/0/3 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/4 description " EMB098 "
+set interfaces ge-2/0/4 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/5 description " EMB099 "
+set interfaces ge-2/0/5 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/6 description " EMB100 "
+set interfaces ge-2/0/6 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/7 description " EMB101 "
+set interfaces ge-2/0/7 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/8 description " EMB102 "
+set interfaces ge-2/0/8 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/9 description " EMB103 "
+set interfaces ge-2/0/9 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/10 description " EMB104 "
+set interfaces ge-2/0/10 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/11 description " EMB105 "
+set interfaces ge-2/0/11 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/12 description " EMB106 "
+set interfaces ge-2/0/12 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-2/0/13 description " EMB107 "
+set interfaces ge-2/0/13 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/14 description " EMB108 "
+set interfaces ge-2/0/14 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/15 description " EMB109 "
+set interfaces ge-2/0/15 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-2/0/16 description " EMB110 "
+set interfaces ge-2/0/16 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/17 description " EMB111 "
+set interfaces ge-2/0/17 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-2/0/18 description " EMB112 "
+set interfaces ge-2/0/18 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/19 description " EMB113 "
+set interfaces ge-2/0/19 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-2/0/20 description " EMB114 "
+set interfaces ge-2/0/20 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/21 description " EMB115 "
+set interfaces ge-2/0/21 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-2/0/22 description " EMB116 "
+set interfaces ge-2/0/22 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/23 description " EMB117 "
+set interfaces ge-2/0/23 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/24 description " EMB118 "
+set interfaces ge-2/0/24 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/25 description " EMB119 "
+set interfaces ge-2/0/25 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/26 description " EMB120 "
+set interfaces ge-2/0/26 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-2/0/27 description " EMB121 "
+set interfaces ge-2/0/27 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/28 description " EMB122 "
+set interfaces ge-2/0/28 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/29 description " EMB123 "
+set interfaces ge-2/0/29 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-2/0/30 description " EMB124 "
+set interfaces ge-2/0/30 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/31 description " EMB125 "
+set interfaces ge-2/0/31 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/32 description " EMB126 "
+set interfaces ge-2/0/32 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/33 description " EMB127 "
+set interfaces ge-2/0/33 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-2/0/34 description " EMB128 "
+set interfaces ge-2/0/34 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/35 description " EMB129 "
+set interfaces ge-2/0/35 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-2/0/36 description " EMB130 "
+set interfaces ge-2/0/36 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-2/0/37 description " EMB131 "
+set interfaces ge-2/0/37 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/38 description " EMB132 "
+set interfaces ge-2/0/38 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-2/0/39 description " EMB133 "
+set interfaces ge-2/0/39 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/40 description " EMB134 "
+set interfaces ge-2/0/40 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-2/0/41 description " EMB135 "
+set interfaces ge-2/0/41 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/42 description " EMB136 "
+set interfaces ge-2/0/42 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-2/0/43 description " EMB137 "
+set interfaces ge-2/0/43 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-2/0/44 description " EMB138 "
+set interfaces ge-2/0/44 unit 0 family ethernet-switching vlan members IT-56
+set interfaces ge-2/0/45 description " EMB139 "
+set interfaces ge-2/0/45 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-2/0/46 description " EMB140 "
+set interfaces ge-2/0/46 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-2/0/47 description " EMB141 "
+set interfaces ge-2/0/47 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/0 description " unplugged "
+set interfaces ge-3/0/0 unit 0 family ethernet-switching
+set interfaces ge-3/0/1 description " EMB142 "
+set interfaces ge-3/0/1 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-3/0/2 description " EMB143 "
+set interfaces ge-3/0/2 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/3 description " EMB144 "
+set interfaces ge-3/0/3 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-3/0/4 description " EMB145 "
+set interfaces ge-3/0/4 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/5 description " EMB146 "
+set interfaces ge-3/0/5 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-3/0/6 description " EMB147 "
+set interfaces ge-3/0/6 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/7 description " EMB148 "
+set interfaces ge-3/0/7 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-3/0/8 description " EMB149 "
+set interfaces ge-3/0/8 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-3/0/9 description " EMB150 "
+set interfaces ge-3/0/9 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-3/0/10 description " EMB151 "
+set interfaces ge-3/0/10 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-3/0/11 description " EMB152 "
+set interfaces ge-3/0/11 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-3/0/12 description " EMB153 "
+set interfaces ge-3/0/12 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-3/0/13 description " EMB154 "
+set interfaces ge-3/0/13 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-3/0/14 description " EMB155 "
+set interfaces ge-3/0/14 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/15 description " EMB156 "
+set interfaces ge-3/0/15 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/16 description " EMB157 "
+set interfaces ge-3/0/16 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/17 description " EMB158 "
+set interfaces ge-3/0/17 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/18 description " EMB159 "
+set interfaces ge-3/0/18 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/19 description " EMB160 "
+set interfaces ge-3/0/19 unit 0 family ethernet-switching vlan members DEV-88
+set interfaces ge-3/0/20 description " EMB161 "
+set interfaces ge-3/0/20 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/21 description " EMB162 "
+set interfaces ge-3/0/21 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/22 description " EMB163 "
+set interfaces ge-3/0/22 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/23 description " EMB164 "
+set interfaces ge-3/0/23 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/24 description " EMB165 "
+set interfaces ge-3/0/24 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/25 description " EMB166 "
+set interfaces ge-3/0/25 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/26 description " EMB167 "
+set interfaces ge-3/0/26 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/27 description " EMB168 "
+set interfaces ge-3/0/27 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/28 description " EMB169 "
+set interfaces ge-3/0/28 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/29 description " EMB170 "
+set interfaces ge-3/0/29 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-3/0/30 description " EMB171 "
+set interfaces ge-3/0/30 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/31 description " EMB172 "
+set interfaces ge-3/0/31 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/32 description " EMB173 "
+set interfaces ge-3/0/32 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/33 description " EMB174 "
+set interfaces ge-3/0/33 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/34 description " EMB175 "
+set interfaces ge-3/0/34 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-3/0/35 description " EMB176 "
+set interfaces ge-3/0/35 unit 0 family ethernet-switching vlan members Exnet-184
+set interfaces ge-3/0/36 description " EMB177 "
+set interfaces ge-3/0/36 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-3/0/37 description " EMB178 "
+set interfaces ge-3/0/37 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-3/0/38 unit 0 family ethernet-switching
+set interfaces ge-3/0/39 unit 0 family ethernet-switching
+set interfaces ge-3/0/40 unit 0 family ethernet-switching
+set interfaces ge-3/0/41 unit 0 family ethernet-switching
+set interfaces ge-3/0/42 unit 0 family ethernet-switching
+set interfaces ge-3/0/43 unit 0 family ethernet-switching
+set interfaces ge-3/0/44 unit 0 family ethernet-switching
+set interfaces ge-3/0/45 unit 0 family ethernet-switching
+set interfaces ge-3/0/46 unit 0 family ethernet-switching
+set interfaces ge-3/0/47 unit 0 family ethernet-switching
+set interfaces ae0 description " To 8FCoreSW "
+set interfaces ae0 aggregated-ether-options lacp active
+set interfaces ae0 unit 0 family ethernet-switching port-mode trunk
+set interfaces ae0 unit 0 family ethernet-switching vlan members all
+set interfaces vlan unit 16 family inet address 10.1.16.24/21
+set snmp community uitox authorization read-only
+set routing-options static route 0.0.0.0/0 next-hop 10.1.16.254
+set protocols igmp-snooping vlan all
+set protocols rstp
+set protocols lldp interface all
+set protocols lldp-med interface all
+set ethernet-switching-options storm-control interface all
+set vlans DEV-88 vlan-id 88
+set vlans DMZ-24 vlan-id 24
+set vlans Default vlan-id 1
+set vlans Exnet-184 vlan-id 184
+set vlans FIN-96 vlan-id 96
+set vlans FN-80 vlan-id 80
+set vlans FS-32 vlan-id 32
+set vlans GA-112 vlan-id 112
+set vlans IT-56 vlan-id 56
+set vlans LAN-86SHOP vlan-id 86
+set vlans MGT-16 vlan-id 16
+set vlans MGT-16 l3-interface vlan.16
+set vlans SA-80
+set vlans SA-84 vlan-id 84
+set vlans TEL-48 vlan-id 48
+set vlans Tunnel-128 vlan-id 128
+set virtual-chassis preprovisioned
+set virtual-chassis member 0 role routing-engine
+set virtual-chassis member 0 serial-number CU0214040263
+set virtual-chassis member 1 role routing-engine
+set virtual-chassis member 1 serial-number CU0214041378
+set virtual-chassis member 2 role line-card
+set virtual-chassis member 2 serial-number CU0214041247
+set virtual-chassis member 3 role line-card
+set virtual-chassis member 3 serial-number CU0214040678

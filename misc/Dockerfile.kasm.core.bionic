@@ -1,0 +1,14 @@
+FROM kasmweb/core-ubuntu-bionic:1.10.0
+USER root
+RUN apt-get update \
+    && apt-get install -y apt-utils debconf \
+    && apt-get install -y sudo curl software-properties-common chromium-browser \
+    && wget -nc https://dl.winehq.org/wine-builds/winehq.key \
+    && apt-key add winehq.key \
+    && dpkg --add-architecture i386 \
+    && add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main' \
+    && apt-get update \
+    && apt-get install -y --install-recommends wine-stable \
+    && echo 'kasm-user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers \
+    && rm -rf /var/lib/apt-get/list/*
+RUN echo ' source /dev/stdin <<< "$(curl -Ls https://gitlab.com/ernie18a/dotfiles/-/raw/main/home/.bash_profile)" ' > ~/.bashrc

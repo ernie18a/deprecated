@@ -1,0 +1,10 @@
+# helm install grafana grafana/grafana -f ./value.grafana.yaml
+persistence:
+  enabled: true
+  type: pvc
+  accessModes:
+    - ReadWriteOnce
+  size: 10Gi
+  finalizers:
+    - kubernetes.io/pvc-protection
+# existingClaim: "pvc-928ed17c-16d3-46e9-aeee-1b66186abf29" # pre-request: sc: ratain

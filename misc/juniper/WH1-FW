@@ -1,0 +1,1175 @@
+set version 12.1X46-D40.2
+set groups node0 system host-name FWA.TW1.WH
+set groups node0 interfaces fxp0 unit 0 family inet address 172.16.5.1/24
+set groups node1 system host-name FWB.TW1.WH
+set groups node1 interfaces fxp0 unit 0 family inet address 172.16.5.2/24
+set apply-groups "${node}"
+set system host-name FW.TW1.WH
+set system time-zone Asia/Taipei
+set system root-authentication encrypted-password /* SECRET-DATA */
+set system name-server 10.5.24.1
+set system login class Monitor permissions view
+set system login class Monitor permissions view-configuration
+set system login user aaron uid 2006
+set system login user aaron class read-only
+set system login user aaron authentication encrypted-password /* SECRET-DATA */
+set system login user allan uid 2004
+set system login user allan class read-only
+set system login user allan authentication encrypted-password /* SECRET-DATA */
+set system login user ernie uid 2011
+set system login user ernie class super-user
+set system login user ernie authentication encrypted-password /* SECRET-DATA */
+set system login user gene uid 2000
+set system login user gene class read-only
+set system login user gene authentication encrypted-password /* SECRET-DATA */
+set system login user jacko full-name "Jacko Yu"
+set system login user jacko uid 2009
+set system login user jacko class super-user
+set system login user jacko authentication encrypted-password /* SECRET-DATA */
+set system login user james uid 2008
+set system login user james class read-only
+set system login user james authentication encrypted-password /* SECRET-DATA */
+set system login user joshc uid 2012
+set system login user joshc class super-user
+set system login user joshc authentication encrypted-password /* SECRET-DATA */
+set system login user monitor uid 2007
+set system login user monitor class Monitor
+set system login user monitor authentication encrypted-password /* SECRET-DATA */
+set system login user monitor authentication ssh-rsa /* SECRET-DATA */
+set system login user pen uid 2001
+set system login user pen class read-only
+set system login user pen authentication encrypted-password /* SECRET-DATA */
+set system login user sam uid 2005
+set system login user sam class read-only
+set system login user sam authentication encrypted-password /* SECRET-DATA */
+set system login user sun uid 2002
+set system login user sun class read-only
+set system login user sun authentication encrypted-password /* SECRET-DATA */
+set system services ssh root-login deny
+set system services netconf ssh
+set system services web-management https system-generated-certificate
+set system syslog file critical any critical
+set system syslog file messages any warning
+set system syslog file auth authorization info
+set system syslog file linkstate any any
+set system syslog file linkstate match _link_
+set system syslog file kernel kernel error
+set system syslog file LED any any
+set system syslog file LED match _LED_
+set system syslog file vpn daemon warning
+set system syslog file vpn match KMD
+set system syslog file policy_session user info
+set system syslog file policy_session match RT_FLOW
+set system syslog file policy_session archive size 1000k
+set system syslog file policy_session archive world-readable
+set system syslog file policy_session structured-data
+set system syslog file screen any any
+set system syslog file screen match RT_SCREEN
+set system syslog file cli change-log any
+set system syslog file interactive-commands interactive-commands any
+set system syslog file interactive-commands match UI_CMDLINE_READ_LINE
+set system max-configurations-on-flash 5
+set system max-configuration-rollbacks 49
+set system license autoupdate url https://ae1.juniper.net/junos/key_retrieval
+set system ntp boot-server 10.5.24.1
+set system ntp server 10.5.24.1
+set chassis aggregated-devices ethernet device-count 1
+set chassis cluster control-link-recovery
+set chassis cluster reth-count 3
+set chassis cluster redundancy-group 0 node 0 priority 100
+set chassis cluster redundancy-group 0 node 1 priority 1
+set chassis cluster redundancy-group 1 node 0 priority 100
+set chassis cluster redundancy-group 1 node 1 priority 1
+set chassis cluster redundancy-group 1 gratuitous-arp-count 4
+set chassis cluster redundancy-group 1 interface-monitor ge-0/0/0 weight 64
+set chassis cluster redundancy-group 1 interface-monitor ge-0/0/1 weight 64
+set chassis cluster redundancy-group 1 interface-monitor ge-0/0/2 weight 64
+set chassis cluster redundancy-group 1 interface-monitor ge-0/0/3 weight 64
+set chassis cluster redundancy-group 1 interface-monitor ge-3/0/0 weight 64
+set chassis cluster redundancy-group 1 interface-monitor ge-3/0/1 weight 64
+set chassis cluster redundancy-group 1 interface-monitor ge-3/0/2 weight 64
+set chassis cluster redundancy-group 1 interface-monitor ge-3/0/3 weight 64
+set interfaces ge-0/0/0 gigether-options redundant-parent reth1
+set interfaces ge-0/0/1 gigether-options redundant-parent reth1
+set interfaces ge-0/0/2 gigether-options redundant-parent reth1
+set interfaces ge-0/0/3 gigether-options redundant-parent reth1
+set interfaces ge-3/0/0 gigether-options redundant-parent reth1
+set interfaces ge-3/0/1 gigether-options redundant-parent reth1
+set interfaces ge-3/0/2 gigether-options redundant-parent reth1
+set interfaces ge-3/0/3 gigether-options redundant-parent reth1
+set interfaces fab0 fabric-options member-interfaces ge-0/0/4
+set interfaces fab0 fabric-options member-interfaces ge-0/0/5
+set interfaces fab1 fabric-options member-interfaces ge-3/0/4
+set interfaces fab1 fabric-options member-interfaces ge-3/0/5
+set interfaces lo0 unit 0 description LINK-TO-VR
+set interfaces lo0 unit 0 family inet address 192.168.254.253/30
+set interfaces lo0 unit 1 description LINK-TO-Default
+set interfaces lo0 unit 1 family inet address 192.168.254.254/30
+set interfaces reth1 vlan-tagging
+set interfaces reth1 redundant-ether-options redundancy-group 1
+set interfaces reth1 redundant-ether-options minimum-links 1
+set interfaces reth1 unit 2 vlan-id 2
+set interfaces reth1 unit 2 family inet address 10.5.0.254/21
+set interfaces reth1 unit 4 vlan-id 4
+set interfaces reth1 unit 4 family inet address 60.250.235.190/24
+set interfaces reth1 unit 16 description "MGT-16 Zone"
+set interfaces reth1 unit 16 vlan-id 16
+set interfaces reth1 unit 16 family inet sampling input
+set interfaces reth1 unit 16 family inet sampling output
+set interfaces reth1 unit 16 family inet address 10.5.16.254/21
+set interfaces reth1 unit 24 description "DMZ-24 Zone"
+set interfaces reth1 unit 24 vlan-id 24
+set interfaces reth1 unit 24 family inet sampling input
+set interfaces reth1 unit 24 family inet sampling output
+set interfaces reth1 unit 24 family inet address 10.5.24.254/21
+set interfaces reth1 unit 32 description "LAN-32 Zone"
+set interfaces reth1 unit 32 vlan-id 32
+set interfaces reth1 unit 32 family inet sampling input
+set interfaces reth1 unit 32 family inet sampling output
+set interfaces reth1 unit 32 family inet address 10.5.32.254/21
+set interfaces reth1 unit 40 description "WH Zone"
+set interfaces reth1 unit 40 vlan-id 40
+set interfaces reth1 unit 40 family inet sampling input
+set interfaces reth1 unit 40 family inet sampling output
+set interfaces reth1 unit 40 family inet address 10.5.40.254/21
+set interfaces reth1 unit 48 description "PDA-48 Zone"
+set interfaces reth1 unit 48 vlan-id 48
+set interfaces reth1 unit 48 family inet sampling input
+set interfaces reth1 unit 48 family inet sampling output
+set interfaces reth1 unit 48 family inet address 10.5.48.254/21
+set interfaces reth1 unit 56 description "IT-56 Zone"
+set interfaces reth1 unit 56 vlan-id 56
+set interfaces reth1 unit 56 family inet sampling input
+set interfaces reth1 unit 56 family inet sampling output
+set interfaces reth1 unit 56 family inet address 10.5.56.254/21
+set interfaces reth1 unit 64 description "WIT-64 Zone"
+set interfaces reth1 unit 64 vlan-id 64
+set interfaces reth1 unit 64 family inet sampling input
+set interfaces reth1 unit 64 family inet sampling output
+set interfaces reth1 unit 64 family inet address 10.5.64.254/21
+set interfaces reth1 unit 72 description "OA-72 Zone"
+set interfaces reth1 unit 72 vlan-id 72
+set interfaces reth1 unit 72 family inet sampling input
+set interfaces reth1 unit 72 family inet sampling output
+set interfaces reth1 unit 72 family inet address 10.5.72.254/21
+set interfaces reth1 unit 86 description "LAN-86SHOP Zone"
+set interfaces reth1 unit 86 vlan-id 86
+set interfaces reth1 unit 86 family inet address 10.11.101.254/24
+set interfaces reth1 unit 88 description "Miner-88 Zone"
+set interfaces reth1 unit 88 vlan-id 88
+set interfaces reth1 unit 88 family inet address 10.5.88.254/21
+set interfaces reth1 unit 501 description Ch-4G-501
+set interfaces reth1 unit 501 vlan-id 501
+set interfaces reth1 unit 501 family inet address 192.168.1.250/24
+set interfaces reth1 unit 502 description FET-NET-502
+set interfaces reth1 unit 502 vlan-id 502
+set interfaces reth1 unit 502 family inet address 210.64.74.206/24
+set interfaces st0 unit 2 family inet address 192.168.0.6/30
+set interfaces st0 unit 10 family inet address 192.168.0.26/30
+set interfaces st0 unit 53 family inet address 192.168.53.2/30
+set interfaces st0 unit 522 description TW_IDC-BK-4G
+set interfaces st0 unit 522 family inet address 192.168.5.14/30
+set forwarding-options sampling input rate 50
+set forwarding-options sampling input run-length 0
+set forwarding-options sampling family inet output aggregate-export-interval 90
+set forwarding-options sampling family inet output flow-server 10.5.32.12 port 2055
+set forwarding-options sampling family inet output flow-server 10.5.32.12 version 5
+set forwarding-options helpers bootp relay-agent-option
+set forwarding-options helpers bootp server 10.5.32.249
+set forwarding-options helpers bootp maximum-hop-count 4
+set forwarding-options helpers bootp minimum-wait-time 0
+set forwarding-options helpers bootp interface reth1.40
+set forwarding-options helpers bootp interface reth1.48
+set forwarding-options helpers bootp interface reth1.56
+set forwarding-options helpers bootp interface reth1.64
+set forwarding-options helpers bootp interface reth1.72
+set snmp community uitox authorization read-only
+set routing-options graceful-restart
+set routing-options interface-routes rib-group inet RIB-G
+set routing-options static route 0.0.0.0/0 next-hop 60.250.235.254
+set routing-options static route 0.0.0.0/0 qualified-next-hop 192.168.1.1 preference 50
+set routing-options static route 10.3.0.0/16 next-hop 192.168.53.1
+set routing-options static route 10.3.0.0/16 preference 12
+set routing-options static route 139.175.55.244/32 next-hop 210.64.74.1
+set routing-options static route 125.227.141.175/32 next-hop 210.64.74.1
+set routing-options static route 125.227.141.181/32 next-hop 210.64.74.1
+set routing-options static route 10.19.144.0/21 next-hop 192.168.53.1
+set routing-options static route 122.116.67.55/32 next-hop 210.64.74.1
+set routing-options static route 123.204.238.168/32 next-hop 210.64.74.1
+set routing-options static route 8.8.4.4/32 next-hop 192.168.1.1
+set routing-options rib-groups RIB-G import-rib inet.0
+set routing-options rib-groups RIB-G import-rib VR-4G.inet.0
+set routing-options router-id 5.5.5.5
+set protocols ospf traceoptions file ospf_trace
+set protocols ospf traceoptions file size 100k
+set protocols ospf traceoptions file files 10
+set protocols ospf traceoptions file world-readable
+set protocols ospf traceoptions flag error
+set protocols ospf traceoptions flag general
+set protocols ospf traceoptions flag route
+set protocols ospf traceoptions flag event
+set protocols ospf rib-group RIB-G
+set protocols ospf area 0.0.0.2 area-range 10.5.0.0/16
+set protocols ospf area 0.0.0.2 interface st0.2
+set protocols ospf area 0.0.0.2 interface st0.10
+set protocols ospf area 0.0.0.2 interface reth1.16
+set protocols ospf area 0.0.0.2 interface reth1.24
+set protocols ospf area 0.0.0.2 interface reth1.32
+set protocols ospf area 0.0.0.2 interface reth1.40
+set protocols ospf area 0.0.0.2 interface reth1.72
+set protocols ospf area 0.0.0.2 interface reth1.64
+set protocols ospf area 0.0.0.2 interface st0.522 metric 5
+set protocols ospf area 0.0.0.2 interface reth1.88
+set protocols rstp
+set security ike traceoptions file ike_trace
+set security ike traceoptions file size 100k
+set security ike traceoptions file files 10
+set security ike traceoptions file world-readable
+set security ike traceoptions flag general
+set security ike traceoptions flag next-hop-tunnels
+set security ike policy TW1_WH-to-TPE_IDC mode main
+set security ike policy TW1_WH-to-TPE_IDC proposal-set standard
+set security ike policy TW1_WH-to-TPE_IDC pre-shared-key ascii-text /* SECRET-DATA */
+set security ike policy TW1_WH-to-TPE_OA-IT mode main
+set security ike policy TW1_WH-to-TPE_OA-IT proposal-set standard
+set security ike policy TW1_WH-to-TPE_OA-IT pre-shared-key ascii-text /* SECRET-DATA */
+set security ike policy TPE_WH-to-DEV_BETA mode aggressive
+set security ike policy TPE_WH-to-DEV_BETA proposal-set standard
+set security ike policy TPE_WH-to-DEV_BETA pre-shared-key ascii-text /* SECRET-DATA */
+set security ike policy TPE_WH-to-TPE_IDC-4G mode aggressive
+set security ike policy TPE_WH-to-TPE_IDC-4G proposal-set compatible
+set security ike policy TPE_WH-to-TPE_IDC-4G pre-shared-key ascii-text /* SECRET-DATA */
+set security ike gateway TW1_WH-to-TPE_IDC-gate ike-policy TW1_WH-to-TPE_IDC
+set security ike gateway TW1_WH-to-TPE_IDC-gate address 210.242.169.93
+set security ike gateway TW1_WH-to-TPE_IDC-gate dead-peer-detection
+set security ike gateway TW1_WH-to-TPE_IDC-gate external-interface reth1.4
+set security ike gateway TW1_WH-to-TPE_OA-IT-gate ike-policy TW1_WH-to-TPE_OA-IT
+set security ike gateway TW1_WH-to-TPE_OA-IT-gate address 60.250.151.67
+set security ike gateway TW1_WH-to-TPE_OA-IT-gate address 125.227.141.181
+set security ike gateway TW1_WH-to-TPE_OA-IT-gate dead-peer-detection
+set security ike gateway TW1_WH-to-TPE_OA-IT-gate external-interface reth1.4
+set security ike gateway TPE_WH-to-DEV_BETA-gate ike-policy TPE_WH-to-DEV_BETA
+set security ike gateway TPE_WH-to-DEV_BETA-gate address 210.242.122.60
+set security ike gateway TPE_WH-to-DEV_BETA-gate dead-peer-detection
+set security ike gateway TPE_WH-to-DEV_BETA-gate local-identity hostname FW.US2.WH-1
+set security ike gateway TPE_WH-to-DEV_BETA-gate external-interface reth1.501
+set security ike gateway TPE_WH-to-TPE_IDC-4G-gate ike-policy TPE_WH-to-TPE_IDC-4G
+set security ike gateway TPE_WH-to-TPE_IDC-4G-gate address 210.242.169.93
+set security ike gateway TPE_WH-to-TPE_IDC-4G-gate dead-peer-detection
+set security ike gateway TPE_WH-to-TPE_IDC-4G-gate local-identity hostname FW.TW1.WH-1
+set security ike gateway TPE_WH-to-TPE_IDC-4G-gate external-interface reth1.501
+set security ipsec traceoptions flag next-hop-tunnel-binding
+set security ipsec traceoptions flag security-associations
+set security ipsec vpn-monitor-options interval 60
+set security ipsec vpn-monitor-options threshold 30
+set security ipsec policy TW1_WH-to-TPE_IDC-gate proposal-set standard
+set security ipsec policy TW1_WH-to-TPE_OA-IT-gate proposal-set standard
+set security ipsec policy TPE_WH-to-DEV_BETA-gate proposal-set standard
+set security ipsec policy TPE_WH-to-TPE_IDC-4G-gate proposal-set standard
+set security ipsec vpn TW1_WH-to-TPE_IDC-ipsec bind-interface st0.2
+set security ipsec vpn TW1_WH-to-TPE_IDC-ipsec vpn-monitor optimized
+set security ipsec vpn TW1_WH-to-TPE_IDC-ipsec ike gateway TW1_WH-to-TPE_IDC-gate
+set security ipsec vpn TW1_WH-to-TPE_IDC-ipsec ike ipsec-policy TW1_WH-to-TPE_IDC-gate
+set security ipsec vpn TW1_WH-to-TPE_IDC-ipsec establish-tunnels immediately
+set security ipsec vpn TW1_WH-to-TPE_OA-IT-ipsec bind-interface st0.10
+set security ipsec vpn TW1_WH-to-TPE_OA-IT-ipsec vpn-monitor optimized
+set security ipsec vpn TW1_WH-to-TPE_OA-IT-ipsec ike gateway TW1_WH-to-TPE_OA-IT-gate
+set security ipsec vpn TW1_WH-to-TPE_OA-IT-ipsec ike ipsec-policy TW1_WH-to-TPE_OA-IT-gate
+set security ipsec vpn TW1_WH-to-TPE_OA-IT-ipsec establish-tunnels immediately
+set security ipsec vpn TPE_WH-to-DEV_BETA-ipsec bind-interface st0.53
+set security ipsec vpn TPE_WH-to-DEV_BETA-ipsec vpn-monitor optimized
+set security ipsec vpn TPE_WH-to-DEV_BETA-ipsec ike gateway TPE_WH-to-DEV_BETA-gate
+set security ipsec vpn TPE_WH-to-DEV_BETA-ipsec ike ipsec-policy TPE_WH-to-DEV_BETA-gate
+set security ipsec vpn TPE_WH-to-DEV_BETA-ipsec establish-tunnels immediately
+set security ipsec vpn TPE_WH-to-TPE_IDC-4G-ipsec bind-interface st0.522
+set security ipsec vpn TPE_WH-to-TPE_IDC-4G-ipsec ike gateway TPE_WH-to-TPE_IDC-4G-gate
+set security ipsec vpn TPE_WH-to-TPE_IDC-4G-ipsec ike ipsec-policy TPE_WH-to-TPE_IDC-4G-gate
+set security ipsec vpn TPE_WH-to-TPE_IDC-4G-ipsec establish-tunnels immediately
+set security flow traceoptions file ipsec-traf.log
+set security flow traceoptions file size 5m
+set security flow traceoptions flag all
+set security flow traceoptions packet-filter outgoing-esp source-prefix 192.168.1.250/32
+set security flow traceoptions packet-filter outgoing-esp destination-prefix 210.242.169.93/32
+set security flow allow-dns-reply
+set security flow syn-flood-protection-mode syn-cookie
+set security flow tcp-mss all-tcp mss 1350
+set security flow tcp-mss ipsec-vpn mss 1350
+set security flow tcp-session no-syn-check
+set security flow tcp-session no-sequence-check
+set security screen ids-option Untrust-Screen icmp ip-sweep
+set security screen ids-option Untrust-Screen icmp fragment
+set security screen ids-option Untrust-Screen icmp large
+set security screen ids-option Untrust-Screen icmp flood
+set security screen ids-option Untrust-Screen icmp ping-death
+set security screen ids-option Untrust-Screen ip bad-option
+set security screen ids-option Untrust-Screen ip record-route-option
+set security screen ids-option Untrust-Screen ip timestamp-option
+set security screen ids-option Untrust-Screen ip security-option
+set security screen ids-option Untrust-Screen ip stream-option
+set security screen ids-option Untrust-Screen ip spoofing
+set security screen ids-option Untrust-Screen ip source-route-option
+set security screen ids-option Untrust-Screen ip loose-source-route-option
+set security screen ids-option Untrust-Screen ip strict-source-route-option
+set security screen ids-option Untrust-Screen ip unknown-protocol
+set security screen ids-option Untrust-Screen ip block-frag
+set security screen ids-option Untrust-Screen ip tear-drop
+set security screen ids-option Untrust-Screen tcp syn-fin
+set security screen ids-option Untrust-Screen tcp fin-no-ack
+set security screen ids-option Untrust-Screen tcp tcp-no-flag
+set security screen ids-option Untrust-Screen tcp syn-frag
+set security screen ids-option Untrust-Screen tcp port-scan
+set security screen ids-option Untrust-Screen tcp syn-ack-ack-proxy
+set security screen ids-option Untrust-Screen tcp syn-flood alarm-threshold 1024
+set security screen ids-option Untrust-Screen tcp syn-flood attack-threshold 200
+set security screen ids-option Untrust-Screen tcp syn-flood source-threshold 1024
+set security screen ids-option Untrust-Screen tcp syn-flood destination-threshold 2048
+set security screen ids-option Untrust-Screen tcp syn-flood timeout 20
+set security screen ids-option Untrust-Screen tcp land
+set security screen ids-option Untrust-Screen tcp winnuke
+set security screen ids-option Untrust-Screen tcp tcp-sweep
+set security screen ids-option Untrust-Screen udp flood
+set security screen ids-option Untrust-Screen udp udp-sweep
+set security nat source rule-set interface-nat from zone DMZ-24
+set security nat source rule-set interface-nat from zone LAN-32
+set security nat source rule-set interface-nat from zone Miner-88
+set security nat source rule-set interface-nat from zone WH-40
+set security nat source rule-set interface-nat to zone Untrust
+set security nat source rule-set interface-nat rule to-WAN match source-address 0.0.0.0/0
+set security nat source rule-set interface-nat rule to-WAN match destination-address 0.0.0.0/0
+set security nat source rule-set interface-nat rule to-WAN then source-nat interface
+set security nat destination pool MGT-GW address 10.5.16.254/32
+set security nat destination pool MGT-GW address port 22
+set security nat destination rule-set DestinationNAT from zone Untrust
+set security nat destination rule-set DestinationNAT rule MGT-GW match source-address 0.0.0.0/0
+set security nat destination rule-set DestinationNAT rule MGT-GW match destination-address 60.250.235.190/32
+set security nat destination rule-set DestinationNAT rule MGT-GW match destination-port 22222
+set security nat destination rule-set DestinationNAT rule MGT-GW then destination-nat pool MGT-GW
+set security nat destination rule-set DestinationNAT rule MGT-GW-2 match source-address 0.0.0.0/0
+set security nat destination rule-set DestinationNAT rule MGT-GW-2 match destination-address 210.64.74.206/32
+set security nat destination rule-set DestinationNAT rule MGT-GW-2 match destination-port 22222
+set security nat destination rule-set DestinationNAT rule MGT-GW-2 then destination-nat pool MGT-GW
+set security policies from-zone DMZ-24 to-zone VPN policy DMZ-to-VPN-DNS match source-address DNS
+set security policies from-zone DMZ-24 to-zone VPN policy DMZ-to-VPN-DNS match destination-address TPE_OA-DNS
+set security policies from-zone DMZ-24 to-zone VPN policy DMZ-to-VPN-DNS match destination-address TPE_IDC-DNS
+set security policies from-zone DMZ-24 to-zone VPN policy DMZ-to-VPN-DNS match destination-address BETA-DNS_VIP
+set security policies from-zone DMZ-24 to-zone VPN policy DMZ-to-VPN-DNS match destination-address BETA-DNS-1
+set security policies from-zone DMZ-24 to-zone VPN policy DMZ-to-VPN-DNS match destination-address BETA-DNS-2
+set security policies from-zone DMZ-24 to-zone VPN policy DMZ-to-VPN-DNS match application junos-icmp-ping
+set security policies from-zone DMZ-24 to-zone VPN policy DMZ-to-VPN-DNS match application junos-dns-udp
+set security policies from-zone DMZ-24 to-zone VPN policy DMZ-to-VPN-DNS match application junos-dns-tcp
+set security policies from-zone DMZ-24 to-zone VPN policy DMZ-to-VPN-DNS then permit
+set security policies from-zone DMZ-24 to-zone VPN policy PROXY-to-IDC match source-address PROXY
+set security policies from-zone DMZ-24 to-zone VPN policy PROXY-to-IDC match source-address TEST
+set security policies from-zone DMZ-24 to-zone VPN policy PROXY-to-IDC match destination-address TPE_IDC-LAN
+set security policies from-zone DMZ-24 to-zone VPN policy PROXY-to-IDC match destination-address TPE_IDC-DMZ
+set security policies from-zone DMZ-24 to-zone VPN policy PROXY-to-IDC match destination-address BETA-DMZ
+set security policies from-zone DMZ-24 to-zone VPN policy PROXY-to-IDC match destination-address BETA-LAN
+set security policies from-zone DMZ-24 to-zone VPN policy PROXY-to-IDC match application junos-ping
+set security policies from-zone DMZ-24 to-zone VPN policy PROXY-to-IDC match application HTTPS-Long-Session
+set security policies from-zone DMZ-24 to-zone VPN policy PROXY-to-IDC match application HTTP-Long-Session
+set security policies from-zone DMZ-24 to-zone VPN policy PROXY-to-IDC then permit
+set security policies from-zone DMZ-24 to-zone VPN policy PROXY-to-IDC then log session-init
+set security policies from-zone DMZ-24 to-zone VPN policy PROXY-to-IDC then log session-close
+set security policies from-zone DMZ-24 to-zone VPN policy IM-to-IM match source-address im.tw1.wh
+set security policies from-zone DMZ-24 to-zone VPN policy IM-to-IM match destination-address im
+set security policies from-zone DMZ-24 to-zone VPN policy IM-to-IM match application IMS2S
+set security policies from-zone DMZ-24 to-zone VPN policy IM-to-IM match application junos-ping
+set security policies from-zone DMZ-24 to-zone VPN policy IM-to-IM then permit
+set security policies from-zone VPN to-zone MGT-16 policy TPE_OA-IT-to-MGT match source-address TPE_OA-IT
+set security policies from-zone VPN to-zone MGT-16 policy TPE_OA-IT-to-MGT match destination-address any
+set security policies from-zone VPN to-zone MGT-16 policy TPE_OA-IT-to-MGT match application any
+set security policies from-zone VPN to-zone MGT-16 policy TPE_OA-IT-to-MGT then permit
+set security policies from-zone VPN to-zone MGT-16 policy ansible-to-mgt match source-address TW_OA2_ansible
+set security policies from-zone VPN to-zone MGT-16 policy ansible-to-mgt match destination-address any
+set security policies from-zone VPN to-zone MGT-16 policy ansible-to-mgt match application SSH-22
+set security policies from-zone VPN to-zone MGT-16 policy ansible-to-mgt match application SSH-830
+set security policies from-zone VPN to-zone MGT-16 policy ansible-to-mgt then permit
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-YUM match source-address any
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-YUM match destination-address YUM
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-YUM match application junos-http
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-YUM match application junos-ping
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-YUM then permit
+set security policies from-zone LAN-32 to-zone DMZ-24 policy Gate-to-All match source-address gate
+set security policies from-zone LAN-32 to-zone DMZ-24 policy Gate-to-All match destination-address any
+set security policies from-zone LAN-32 to-zone DMZ-24 policy Gate-to-All match application SSH-22
+set security policies from-zone LAN-32 to-zone DMZ-24 policy Gate-to-All then permit
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-DMZ-default match source-address any
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-DMZ-default match destination-address any
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-DMZ-default match application junos-ntp
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-DMZ-default match application junos-dns-udp
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-DMZ-default match application junos-dns-tcp
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-DMZ-default match application junos-icmp-ping
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-DMZ-default match application junos-http
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-DMZ-default match application junos-dhcp-client
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-DMZ-default match application junos-ms-rpc-any
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-DMZ-default match application junos-ldap
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-DMZ-default match application SNMP-UDP-161-FOR-CACTI
+set security policies from-zone LAN-32 to-zone DMZ-24 policy LAN-to-DMZ-default then permit
+set security policies from-zone LAN-32 to-zone DMZ-24 policy WSUS-to-PROXY match source-address WSUS_32.248
+set security policies from-zone LAN-32 to-zone DMZ-24 policy WSUS-to-PROXY match source-address TW1-FDC-32.1
+set security policies from-zone LAN-32 to-zone DMZ-24 policy WSUS-to-PROXY match destination-address PROXY
+set security policies from-zone LAN-32 to-zone DMZ-24 policy WSUS-to-PROXY match application PROXY-8080
+set security policies from-zone LAN-32 to-zone DMZ-24 policy WSUS-to-PROXY then permit
+set security policies from-zone PDA-48 to-zone DMZ-24 policy PDA-to-DMZ-default match source-address any
+set security policies from-zone PDA-48 to-zone DMZ-24 policy PDA-to-DMZ-default match destination-address any
+set security policies from-zone PDA-48 to-zone DMZ-24 policy PDA-to-DMZ-default match application junos-dns-udp
+set security policies from-zone PDA-48 to-zone DMZ-24 policy PDA-to-DMZ-default match application junos-dns-tcp
+set security policies from-zone PDA-48 to-zone DMZ-24 policy PDA-to-DMZ-default match application junos-ntp
+set security policies from-zone PDA-48 to-zone DMZ-24 policy PDA-to-DMZ-default match application junos-http
+set security policies from-zone PDA-48 to-zone DMZ-24 policy PDA-to-DMZ-default match application junos-icmp-ping
+set security policies from-zone PDA-48 to-zone DMZ-24 policy PDA-to-DMZ-default match application junos-dhcp-client
+set security policies from-zone PDA-48 to-zone DMZ-24 policy PDA-to-DMZ-default then permit
+set security policies from-zone PDA-48 to-zone DMZ-24 policy PDA-to-PROXY match source-address any
+set security policies from-zone PDA-48 to-zone DMZ-24 policy PDA-to-PROXY match destination-address PROXY
+set security policies from-zone PDA-48 to-zone DMZ-24 policy PDA-to-PROXY match application junos-ping
+set security policies from-zone PDA-48 to-zone DMZ-24 policy PDA-to-PROXY match application PROXY-8080
+set security policies from-zone PDA-48 to-zone DMZ-24 policy PDA-to-PROXY then permit
+set security policies from-zone LAN-32 to-zone PDA-48 policy DHCP-to-PDA match source-address DHCP
+set security policies from-zone LAN-32 to-zone PDA-48 policy DHCP-to-PDA match destination-address PDA-GW
+set security policies from-zone LAN-32 to-zone PDA-48 policy DHCP-to-PDA match application junos-dhcp-relay
+set security policies from-zone LAN-32 to-zone PDA-48 policy DHCP-to-PDA then permit
+set security policies from-zone LAN-32 to-zone VPN policy LAN-to-Beta match source-address any
+set security policies from-zone LAN-32 to-zone VPN policy LAN-to-Beta match destination-address TPE_OA-Beta
+set security policies from-zone LAN-32 to-zone VPN policy LAN-to-Beta match application junos-icmp-ping
+set security policies from-zone LAN-32 to-zone VPN policy LAN-to-Beta match application junos-http
+set security policies from-zone LAN-32 to-zone VPN policy LAN-to-Beta then permit
+set security policies from-zone LAN-32 to-zone VPN policy LAN-to-Beta then log session-init
+set security policies from-zone LAN-32 to-zone VPN policy LAN-to-Beta then log session-close
+set security policies from-zone LAN-32 to-zone VPN policy LAN-to-IDC-DMZ match source-address any
+set security policies from-zone LAN-32 to-zone VPN policy LAN-to-IDC-DMZ match destination-address TPE_IDC-DMZ
+set security policies from-zone LAN-32 to-zone VPN policy LAN-to-IDC-DMZ match application junos-icmp-ping
+set security policies from-zone LAN-32 to-zone VPN policy LAN-to-IDC-DMZ match application junos-http
+set security policies from-zone LAN-32 to-zone VPN policy LAN-to-IDC-DMZ match application junos-https
+set security policies from-zone LAN-32 to-zone VPN policy LAN-to-IDC-DMZ then permit
+set security policies from-zone LAN-32 to-zone VPN policy LAN-to-IDC-DMZ then log session-init
+set security policies from-zone LAN-32 to-zone VPN policy CardReader-to-SecomServer match source-address CardReader
+set security policies from-zone LAN-32 to-zone VPN policy CardReader-to-SecomServer match source-address LAN-GW
+set security policies from-zone LAN-32 to-zone VPN policy CardReader-to-SecomServer match destination-address SecomServer
+set security policies from-zone LAN-32 to-zone VPN policy CardReader-to-SecomServer match application Secom
+set security policies from-zone LAN-32 to-zone VPN policy CardReader-to-SecomServer then permit
+set security policies from-zone LAN-32 to-zone VPN policy DC-to-DC-replica match source-address DC
+set security policies from-zone LAN-32 to-zone VPN policy DC-to-DC-replica match destination-address DC
+set security policies from-zone LAN-32 to-zone VPN policy DC-to-DC-replica match application DC-to-DC-Replica
+set security policies from-zone LAN-32 to-zone VPN policy DC-to-DC-replica match application DFSR-TCP-5722
+set security policies from-zone LAN-32 to-zone VPN policy DC-to-DC-replica then permit
+set security policies from-zone PDA-48 to-zone VPN policy PDA-to-Beta match source-address any
+set security policies from-zone PDA-48 to-zone VPN policy PDA-to-Beta match destination-address TPE_OA-Beta
+set security policies from-zone PDA-48 to-zone VPN policy PDA-to-Beta match application junos-icmp-ping
+set security policies from-zone PDA-48 to-zone VPN policy PDA-to-Beta match application junos-http
+set security policies from-zone PDA-48 to-zone VPN policy PDA-to-Beta then permit
+set security policies from-zone PDA-48 to-zone VPN policy PDA-to-IDC-DMZ match source-address any
+set security policies from-zone PDA-48 to-zone VPN policy PDA-to-IDC-DMZ match destination-address TPE_IDC-DMZ
+set security policies from-zone PDA-48 to-zone VPN policy PDA-to-IDC-DMZ match application junos-http
+set security policies from-zone PDA-48 to-zone VPN policy PDA-to-IDC-DMZ match application junos-https
+set security policies from-zone PDA-48 to-zone VPN policy PDA-to-IDC-DMZ match application junos-ping
+set security policies from-zone PDA-48 to-zone VPN policy PDA-to-IDC-DMZ then permit
+set security policies from-zone PDA-48 to-zone VPN policy PDA-to-IDC-DMZ then log session-init
+set security policies from-zone DMZ-24 to-zone Untrust policy YUM-to-Untrust match source-address YUM
+set security policies from-zone DMZ-24 to-zone Untrust policy YUM-to-Untrust match destination-address any
+set security policies from-zone DMZ-24 to-zone Untrust policy YUM-to-Untrust match application junos-http
+set security policies from-zone DMZ-24 to-zone Untrust policy YUM-to-Untrust match application junos-https
+set security policies from-zone DMZ-24 to-zone Untrust policy YUM-to-Untrust match application junos-ping
+set security policies from-zone DMZ-24 to-zone Untrust policy YUM-to-Untrust then permit
+set security policies from-zone DMZ-24 to-zone Untrust policy DNS-to-Untrust match source-address DNS
+set security policies from-zone DMZ-24 to-zone Untrust policy DNS-to-Untrust match destination-address any
+set security policies from-zone DMZ-24 to-zone Untrust policy DNS-to-Untrust match application junos-dns-udp
+set security policies from-zone DMZ-24 to-zone Untrust policy DNS-to-Untrust match application junos-ping
+set security policies from-zone DMZ-24 to-zone Untrust policy DNS-to-Untrust match application junos-ntp
+set security policies from-zone DMZ-24 to-zone Untrust policy DNS-to-Untrust then permit
+set security policies from-zone DMZ-24 to-zone Untrust policy PROXY-to-Untrust match source-address PROXY
+set security policies from-zone DMZ-24 to-zone Untrust policy PROXY-to-Untrust match destination-address any
+set security policies from-zone DMZ-24 to-zone Untrust policy PROXY-to-Untrust match application any
+set security policies from-zone DMZ-24 to-zone Untrust policy PROXY-to-Untrust then permit
+set security policies from-zone VPN to-zone DMZ-24 policy TPE_OA-IT-to-DMZ match source-address TPE_OA-IT
+set security policies from-zone VPN to-zone DMZ-24 policy TPE_OA-IT-to-DMZ match destination-address any
+set security policies from-zone VPN to-zone DMZ-24 policy TPE_OA-IT-to-DMZ match application junos-icmp-ping
+set security policies from-zone VPN to-zone DMZ-24 policy TPE_OA-IT-to-DMZ match application junos-http
+set security policies from-zone VPN to-zone DMZ-24 policy TPE_OA-IT-to-DMZ match application IM-TCP-5280
+set security policies from-zone VPN to-zone DMZ-24 policy TPE_OA-IT-to-DMZ match application junos-ssh
+set security policies from-zone VPN to-zone DMZ-24 policy TPE_OA-IT-to-DMZ then permit
+set security policies from-zone VPN to-zone DMZ-24 policy TPE_OA-YUM-to-YUM match source-address TPE_OA-YUM
+set security policies from-zone VPN to-zone DMZ-24 policy TPE_OA-YUM-to-YUM match destination-address YUM
+set security policies from-zone VPN to-zone DMZ-24 policy TPE_OA-YUM-to-YUM match application junos-icmp-ping
+set security policies from-zone VPN to-zone DMZ-24 policy TPE_OA-YUM-to-YUM match application junos-ssh
+set security policies from-zone VPN to-zone DMZ-24 policy TPE_OA-YUM-to-YUM match application junos-http
+set security policies from-zone VPN to-zone DMZ-24 policy TPE_OA-YUM-to-YUM then permit
+set security policies from-zone VPN to-zone DMZ-24 policy VPN_DNS-to-DMZ_DNS match source-address TPE_OA-DNS
+set security policies from-zone VPN to-zone DMZ-24 policy VPN_DNS-to-DMZ_DNS match destination-address DNS
+set security policies from-zone VPN to-zone DMZ-24 policy VPN_DNS-to-DMZ_DNS match application junos-dns-udp
+set security policies from-zone VPN to-zone DMZ-24 policy VPN_DNS-to-DMZ_DNS match application junos-dns-tcp
+set security policies from-zone VPN to-zone DMZ-24 policy VPN_DNS-to-DMZ_DNS match application junos-icmp-ping
+set security policies from-zone VPN to-zone DMZ-24 policy VPN_DNS-to-DMZ_DNS then permit
+set security policies from-zone VPN to-zone DMZ-24 policy IM-to-IM match source-address im
+set security policies from-zone VPN to-zone DMZ-24 policy IM-to-IM match destination-address im.tw1.wh
+set security policies from-zone VPN to-zone DMZ-24 policy IM-to-IM match application IMS2S
+set security policies from-zone VPN to-zone DMZ-24 policy IM-to-IM match application junos-ping
+set security policies from-zone VPN to-zone DMZ-24 policy IM-to-IM then permit
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-LAN match source-address TPE_OA-IT
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-LAN match destination-address any
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-LAN match application junos-icmp-ping
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-LAN match application junos-http
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-LAN match application junos-https
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-LAN match application Synology-TCP-5000
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-LAN then permit
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-gate match source-address TPE_OA-IT
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-gate match destination-address gate
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-gate match application SSH-22
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-gate then permit
+set security policies from-zone VPN to-zone LAN-32 policy SecomServer-to-CardReader match source-address SecomServer
+set security policies from-zone VPN to-zone LAN-32 policy SecomServer-to-CardReader match source-address Main-FW
+set security policies from-zone VPN to-zone LAN-32 policy SecomServer-to-CardReader match destination-address CardReader
+set security policies from-zone VPN to-zone LAN-32 policy SecomServer-to-CardReader match application Secom
+set security policies from-zone VPN to-zone LAN-32 policy SecomServer-to-CardReader then permit
+set security policies from-zone VPN to-zone LAN-32 policy BETA1_UX_UPDPROG-CLIENTSET match source-address BETA1_UX_UPDPROGSET
+set security policies from-zone VPN to-zone LAN-32 policy BETA1_UX_UPDPROG-CLIENTSET match destination-address UPDPROG-CLIENTSET
+set security policies from-zone VPN to-zone LAN-32 policy BETA1_UX_UPDPROG-CLIENTSET match application junos-ssh
+set security policies from-zone VPN to-zone LAN-32 policy BETA1_UX_UPDPROG-CLIENTSET match application junos-ping
+set security policies from-zone VPN to-zone LAN-32 policy BETA1_UX_UPDPROG-CLIENTSET then permit
+set security policies from-zone VPN to-zone LAN-32 policy DC-to-DC-replica match source-address DC
+set security policies from-zone VPN to-zone LAN-32 policy DC-to-DC-replica match destination-address DC
+set security policies from-zone VPN to-zone LAN-32 policy DC-to-DC-replica match application DFSR-TCP-5722
+set security policies from-zone VPN to-zone LAN-32 policy DC-to-DC-replica match application DC-to-DC-Replica
+set security policies from-zone VPN to-zone LAN-32 policy DC-to-DC-replica then permit
+set security policies from-zone VPN to-zone LAN-32 policy IDC1_UX_UPDPROG-CLIENTSET match source-address IDC1_UX_UPDPROGSET
+set security policies from-zone VPN to-zone LAN-32 policy IDC1_UX_UPDPROG-CLIENTSET match destination-address UPDPROG-CLIENTSET
+set security policies from-zone VPN to-zone LAN-32 policy IDC1_UX_UPDPROG-CLIENTSET match application junos-ssh
+set security policies from-zone VPN to-zone LAN-32 policy IDC1_UX_UPDPROG-CLIENTSET match application junos-ping
+set security policies from-zone VPN to-zone LAN-32 policy IDC1_UX_UPDPROG-CLIENTSET then permit
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-TW1-DC match source-address TPE_OA-IT
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-TW1-DC match destination-address TW1-DC
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-TW1-DC match destination-address WSUS_32.248
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-TW1-DC match application junos-icmp-ping
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-TW1-DC match application msrdp-tcp-3389
+set security policies from-zone VPN to-zone LAN-32 policy TPE_OA-IT-to-TW1-DC then permit
+set security policies from-zone DMZ-24 to-zone LAN-32 policy LAN-to-NIS match source-address any
+set security policies from-zone DMZ-24 to-zone LAN-32 policy LAN-to-NIS match destination-address nis
+set security policies from-zone DMZ-24 to-zone LAN-32 policy LAN-to-NIS match application NIS
+set security policies from-zone DMZ-24 to-zone LAN-32 policy LAN-to-NIS then permit
+set security policies from-zone DMZ-24 to-zone LAN-32 policy DMZ-to-LAN-DNS match source-address any
+set security policies from-zone DMZ-24 to-zone LAN-32 policy DMZ-to-LAN-DNS match destination-address FDC-TW1WH_32.1
+set security policies from-zone DMZ-24 to-zone LAN-32 policy DMZ-to-LAN-DNS match destination-address SDC-TW1WH_32.2
+set security policies from-zone DMZ-24 to-zone LAN-32 policy DMZ-to-LAN-DNS match application junos-icmp-ping
+set security policies from-zone DMZ-24 to-zone LAN-32 policy DMZ-to-LAN-DNS match application junos-dns-udp
+set security policies from-zone DMZ-24 to-zone LAN-32 policy DMZ-to-LAN-DNS then permit
+set security policies from-zone DMZ-24 to-zone LAN-32 policy DMZ-to-LAN-DC match source-address any
+set security policies from-zone DMZ-24 to-zone LAN-32 policy DMZ-to-LAN-DC match destination-address TW1-DC
+set security policies from-zone DMZ-24 to-zone LAN-32 policy DMZ-to-LAN-DC match application Join-AD
+set security policies from-zone DMZ-24 to-zone LAN-32 policy DMZ-to-LAN-DC then permit
+set security policies from-zone DMZ-24 to-zone LAN-32 policy DMZ-to-WSUS match source-address any
+set security policies from-zone DMZ-24 to-zone LAN-32 policy DMZ-to-WSUS match destination-address WSUS_32.248
+set security policies from-zone DMZ-24 to-zone LAN-32 policy DMZ-to-WSUS match application WSUS-TCP-8530
+set security policies from-zone DMZ-24 to-zone LAN-32 policy DMZ-to-WSUS then permit
+set security policies from-zone LAN-32 to-zone Untrust policy WSUS-to-Untrust match source-address WSUS_32.248
+set security policies from-zone LAN-32 to-zone Untrust policy WSUS-to-Untrust match destination-address any
+set security policies from-zone LAN-32 to-zone Untrust policy WSUS-to-Untrust match application junos-http
+set security policies from-zone LAN-32 to-zone Untrust policy WSUS-to-Untrust match application junos-https
+set security policies from-zone LAN-32 to-zone Untrust policy WSUS-to-Untrust then permit
+set security policies from-zone LAN-32 to-zone Untrust policy WSUS-to-Untrust then log session-init
+set security policies from-zone LAN-32 to-zone Untrust policy WSUS-to-Untrust then log session-close
+set security policies from-zone LAN-32 to-zone Untrust policy CACTI-PING match source-address CACTI
+set security policies from-zone LAN-32 to-zone Untrust policy CACTI-PING match destination-address CHT-NS
+set security policies from-zone LAN-32 to-zone Untrust policy CACTI-PING match destination-address HQ-FW
+set security policies from-zone LAN-32 to-zone Untrust policy CACTI-PING match destination-address BETA-FW
+set security policies from-zone LAN-32 to-zone Untrust policy CACTI-PING match destination-address IDC-FW
+set security policies from-zone LAN-32 to-zone Untrust policy CACTI-PING match application junos-icmp-ping
+set security policies from-zone LAN-32 to-zone Untrust policy CACTI-PING then permit
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-LAN-DNS match source-address any
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-LAN-DNS match destination-address FDC-TW1WH_32.1
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-LAN-DNS match destination-address SDC-TW1WH_32.2
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-LAN-DNS match application junos-dns-udp
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-LAN-DNS match application junos-dns-tcp
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-LAN-DNS then permit
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-AD match source-address any
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-AD match destination-address TW1-DC
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-AD match application Join-AD
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-AD then permit
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-DHCP match source-address any
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-DHCP match destination-address DHCP
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-DHCP match application any
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-DHCP then permit
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-WSUS match source-address any
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-WSUS match destination-address WSUS_32.248
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-WSUS match application WSUS-TCP-8530
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-to-WSUS then permit
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-48-to-UpdProg match source-address any
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-48-to-UpdProg match destination-address UpdProg
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-48-to-UpdProg match application junos-http
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-48-to-UpdProg match application junos-https
+set security policies from-zone PDA-48 to-zone LAN-32 policy PDA-48-to-UpdProg then permit
+set security policies from-zone WIT-64 to-zone LAN-32 policy WIT-to-AD match source-address any
+set security policies from-zone WIT-64 to-zone LAN-32 policy WIT-to-AD match destination-address TW1-DC
+set security policies from-zone WIT-64 to-zone LAN-32 policy WIT-to-AD match application Join-AD
+set security policies from-zone WIT-64 to-zone LAN-32 policy WIT-to-AD then permit
+set security policies from-zone WIT-64 to-zone LAN-32 policy WIT-to-LAN match source-address WIT
+set security policies from-zone WIT-64 to-zone LAN-32 policy WIT-to-LAN match destination-address any
+set security policies from-zone WIT-64 to-zone LAN-32 policy WIT-to-LAN match application any
+set security policies from-zone WIT-64 to-zone LAN-32 policy WIT-to-LAN then permit
+set security policies from-zone WIT-64 to-zone LAN-32 policy WIT-to-WSUS match source-address any
+set security policies from-zone WIT-64 to-zone LAN-32 policy WIT-to-WSUS match destination-address WSUS_32.248
+set security policies from-zone WIT-64 to-zone LAN-32 policy WIT-to-WSUS match application WSUS-TCP-8530
+set security policies from-zone WIT-64 to-zone LAN-32 policy WIT-to-WSUS then permit
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-AD match source-address any
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-AD match destination-address TW1-DC
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-AD match destination-address TW1-NAS
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-AD match application any
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-AD then permit
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-DHCP match source-address any
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-DHCP match destination-address DHCP
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-DHCP match application any
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-DHCP then permit
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-WSUS match source-address any
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-WSUS match destination-address WSUS_32.248
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-WSUS match application WSUS-TCP-8530
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-WSUS then permit
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-UpdProg match source-address any
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-UpdProg match destination-address UpdProg
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-UpdProg match application junos-http
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-UpdProg match application junos-https
+set security policies from-zone OA-72 to-zone LAN-32 policy OA-to-UpdProg then permit
+set security policies from-zone LAN-32 to-zone WH-40 policy DHCP-to-WH match source-address DHCP
+set security policies from-zone LAN-32 to-zone WH-40 policy DHCP-to-WH match destination-address WH-GW
+set security policies from-zone LAN-32 to-zone WH-40 policy DHCP-to-WH match application junos-dhcp-relay
+set security policies from-zone LAN-32 to-zone WH-40 policy DHCP-to-WH match application junos-ping
+set security policies from-zone LAN-32 to-zone WH-40 policy DHCP-to-WH then permit
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-DHCP match source-address any
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-DHCP match destination-address DHCP
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-DHCP match application any
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-DHCP then permit
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-AD match source-address any
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-AD match destination-address TW1-DC
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-AD match destination-address TW1-NAS
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-AD match application any
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-AD then permit
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-WSUS match source-address any
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-WSUS match destination-address WSUS_32.248
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-WSUS match application WSUS-TCP-8530
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-WSUS then permit
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-UpdProg match source-address any
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-UpdProg match destination-address UpdProg
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-UpdProg match application junos-http
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-UpdProg match application junos-https
+set security policies from-zone WH-40 to-zone LAN-32 policy WH-to-UpdProg then permit
+set security policies from-zone LAN-32 to-zone IT-56 policy DHCP-to-IT match source-address DHCP
+set security policies from-zone LAN-32 to-zone IT-56 policy DHCP-to-IT match destination-address IT-GW
+set security policies from-zone LAN-32 to-zone IT-56 policy DHCP-to-IT match application junos-dhcp-relay
+set security policies from-zone LAN-32 to-zone IT-56 policy DHCP-to-IT then permit
+set security policies from-zone IT-56 to-zone LAN-32 policy IT-to-DHCP match source-address any
+set security policies from-zone IT-56 to-zone LAN-32 policy IT-to-DHCP match destination-address DHCP
+set security policies from-zone IT-56 to-zone LAN-32 policy IT-to-DHCP match application any
+set security policies from-zone IT-56 to-zone LAN-32 policy IT-to-DHCP then permit
+set security policies from-zone IT-56 to-zone LAN-32 policy IT-to-AD match source-address any
+set security policies from-zone IT-56 to-zone LAN-32 policy IT-to-AD match destination-address TW1-DC
+set security policies from-zone IT-56 to-zone LAN-32 policy IT-to-AD match application Join-AD
+set security policies from-zone IT-56 to-zone LAN-32 policy IT-to-AD then permit
+set security policies from-zone IT-56 to-zone LAN-32 policy IT-to-WSUS match source-address any
+set security policies from-zone IT-56 to-zone LAN-32 policy IT-to-WSUS match destination-address WSUS_32.248
+set security policies from-zone IT-56 to-zone LAN-32 policy IT-to-WSUS match application WSUS-TCP-8530
+set security policies from-zone IT-56 to-zone LAN-32 policy IT-to-WSUS then permit
+set security policies from-zone LAN-32 to-zone WIT-64 policy DHCP-to-WIT match source-address DHCP
+set security policies from-zone LAN-32 to-zone WIT-64 policy DHCP-to-WIT match destination-address WIT-GW
+set security policies from-zone LAN-32 to-zone WIT-64 policy DHCP-to-WIT match application junos-dhcp-relay
+set security policies from-zone LAN-32 to-zone WIT-64 policy DHCP-to-WIT then permit
+set security policies from-zone LAN-32 to-zone OA-72 policy DHCP-to-OA match source-address DHCP
+set security policies from-zone LAN-32 to-zone OA-72 policy DHCP-to-OA match destination-address OA-GW
+set security policies from-zone LAN-32 to-zone OA-72 policy DHCP-to-OA match application junos-dhcp-relay
+set security policies from-zone LAN-32 to-zone OA-72 policy DHCP-to-OA then permit
+set security policies from-zone OA-72 to-zone DMZ-24 policy OA-to-PROXY match source-address any
+set security policies from-zone OA-72 to-zone DMZ-24 policy OA-to-PROXY match destination-address PROXY
+set security policies from-zone OA-72 to-zone DMZ-24 policy OA-to-PROXY match application junos-ping
+set security policies from-zone OA-72 to-zone DMZ-24 policy OA-to-PROXY match application PROXY-8080
+set security policies from-zone OA-72 to-zone DMZ-24 policy OA-to-PROXY then permit
+set security policies from-zone OA-72 to-zone DMZ-24 policy OA-to-IM match source-address any
+set security policies from-zone OA-72 to-zone DMZ-24 policy OA-to-IM match destination-address im.tw1.wh
+set security policies from-zone OA-72 to-zone DMZ-24 policy OA-to-IM match application IMC2S
+set security policies from-zone OA-72 to-zone DMZ-24 policy OA-to-IM match application junos-ping
+set security policies from-zone OA-72 to-zone DMZ-24 policy OA-to-IM then permit
+set security policies from-zone WH-40 to-zone DMZ-24 policy WH-to-PROXY match source-address any
+set security policies from-zone WH-40 to-zone DMZ-24 policy WH-to-PROXY match destination-address PROXY
+set security policies from-zone WH-40 to-zone DMZ-24 policy WH-to-PROXY match destination-address PROXY-LAB
+set security policies from-zone WH-40 to-zone DMZ-24 policy WH-to-PROXY match application junos-ping
+set security policies from-zone WH-40 to-zone DMZ-24 policy WH-to-PROXY match application PROXY-8080
+set security policies from-zone WH-40 to-zone DMZ-24 policy WH-to-PROXY then permit
+set security policies from-zone WH-40 to-zone DMZ-24 policy WH-to-IM match source-address any
+set security policies from-zone WH-40 to-zone DMZ-24 policy WH-to-IM match destination-address im.tw1.wh
+set security policies from-zone WH-40 to-zone DMZ-24 policy WH-to-IM match application IMC2S
+set security policies from-zone WH-40 to-zone DMZ-24 policy WH-to-IM match application junos-ping
+set security policies from-zone WH-40 to-zone DMZ-24 policy WH-to-IM then permit
+set security policies from-zone OA-72 to-zone VPN policy Nydia-to-SecomServer match source-address NYDIA
+set security policies from-zone OA-72 to-zone VPN policy Nydia-to-SecomServer match source-address OA-GW
+set security policies from-zone OA-72 to-zone VPN policy Nydia-to-SecomServer match destination-address SecomServer
+set security policies from-zone OA-72 to-zone VPN policy Nydia-to-SecomServer match destination-address OA-Filecloud
+set security policies from-zone OA-72 to-zone VPN policy Nydia-to-SecomServer match application junos-http
+set security policies from-zone OA-72 to-zone VPN policy Nydia-to-SecomServer match application junos-ping
+set security policies from-zone OA-72 to-zone VPN policy Nydia-to-SecomServer match application SFTP-222
+set security policies from-zone OA-72 to-zone VPN policy Nydia-to-SecomServer then permit
+set security policies from-zone WIT-64 to-zone MGT-16 policy WIT-to-MGT match source-address WIT
+set security policies from-zone WIT-64 to-zone MGT-16 policy WIT-to-MGT match destination-address any
+set security policies from-zone WIT-64 to-zone MGT-16 policy WIT-to-MGT match application any
+set security policies from-zone WIT-64 to-zone MGT-16 policy WIT-to-MGT then permit
+set security policies from-zone WIT-64 to-zone WH-40 policy WIT-to-WH-40 match source-address WIT
+set security policies from-zone WIT-64 to-zone WH-40 policy WIT-to-WH-40 match destination-address any
+set security policies from-zone WIT-64 to-zone WH-40 policy WIT-to-WH-40 match application any
+set security policies from-zone WIT-64 to-zone WH-40 policy WIT-to-WH-40 then permit
+set security policies from-zone WIT-64 to-zone OA-72 policy WIT-to-OA match source-address WIT
+set security policies from-zone WIT-64 to-zone OA-72 policy WIT-to-OA match destination-address any
+set security policies from-zone WIT-64 to-zone OA-72 policy WIT-to-OA match application any
+set security policies from-zone WIT-64 to-zone OA-72 policy WIT-to-OA then permit
+set security policies from-zone WIT-64 to-zone DMZ-24 policy WIT-to-PROXY match source-address any
+set security policies from-zone WIT-64 to-zone DMZ-24 policy WIT-to-PROXY match destination-address PROXY
+set security policies from-zone WIT-64 to-zone DMZ-24 policy WIT-to-PROXY match application junos-ping
+set security policies from-zone WIT-64 to-zone DMZ-24 policy WIT-to-PROXY match application PROXY-8080
+set security policies from-zone WIT-64 to-zone DMZ-24 policy WIT-to-PROXY then permit
+set security policies from-zone WIT-64 to-zone DMZ-24 policy WIT-to-IM match source-address any
+set security policies from-zone WIT-64 to-zone DMZ-24 policy WIT-to-IM match destination-address im.tw1.wh
+set security policies from-zone WIT-64 to-zone DMZ-24 policy WIT-to-IM match application IMC2S
+set security policies from-zone WIT-64 to-zone DMZ-24 policy WIT-to-IM match application junos-ping
+set security policies from-zone WIT-64 to-zone DMZ-24 policy WIT-to-IM then permit
+set security policies from-zone MGT-16 to-zone DMZ-24 policy to-DMZ-default match source-address any
+set security policies from-zone MGT-16 to-zone DMZ-24 policy to-DMZ-default match destination-address any
+set security policies from-zone MGT-16 to-zone DMZ-24 policy to-DMZ-default match application junos-ntp
+set security policies from-zone MGT-16 to-zone DMZ-24 policy to-DMZ-default match application junos-icmp-ping
+set security policies from-zone MGT-16 to-zone DMZ-24 policy to-DMZ-default match application junos-http
+set security policies from-zone MGT-16 to-zone DMZ-24 policy to-DMZ-default match application junos-https
+set security policies from-zone MGT-16 to-zone DMZ-24 policy to-DMZ-default match application junos-dns-tcp
+set security policies from-zone MGT-16 to-zone DMZ-24 policy to-DMZ-default match application junos-dns-udp
+set security policies from-zone MGT-16 to-zone DMZ-24 policy to-DMZ-default then permit
+set security policies from-zone WIT-64 to-zone Untrust policy Ch3G-device match source-address any
+set security policies from-zone WIT-64 to-zone Untrust policy Ch3G-device match destination-address 3G-Device
+set security policies from-zone WIT-64 to-zone Untrust policy Ch3G-device match application PROXY-8080
+set security policies from-zone WIT-64 to-zone Untrust policy Ch3G-device match application junos-icmp-all
+set security policies from-zone WIT-64 to-zone Untrust policy Ch3G-device then permit
+set security policies from-zone Untrust to-zone MGT-16 policy SSH-to-FW match source-address any
+set security policies from-zone Untrust to-zone MGT-16 policy SSH-to-FW match destination-address MGT-GW
+set security policies from-zone Untrust to-zone MGT-16 policy SSH-to-FW match application junos-ssh
+set security policies from-zone Untrust to-zone MGT-16 policy SSH-to-FW then permit
+set security policies from-zone MGT-16 to-zone VPN policy ansible-to-mgt match source-address any
+set security policies from-zone MGT-16 to-zone VPN policy ansible-to-mgt match destination-address any
+set security policies from-zone MGT-16 to-zone VPN policy ansible-to-mgt match application any
+set security policies from-zone MGT-16 to-zone VPN policy ansible-to-mgt then permit
+set security policies from-zone MGT-16 to-zone LAN-32 policy ESXI-GROUP-to-AD match source-address ESXI-GROUP
+set security policies from-zone MGT-16 to-zone LAN-32 policy ESXI-GROUP-to-AD match destination-address TW1-DC
+set security policies from-zone MGT-16 to-zone LAN-32 policy ESXI-GROUP-to-AD match application Join-AD
+set security policies from-zone MGT-16 to-zone LAN-32 policy ESXI-GROUP-to-AD then permit
+set security policies from-zone MGT-16 to-zone LAN-32 policy MGT-16-to-LAN-32 match source-address juniper-switch
+set security policies from-zone MGT-16 to-zone LAN-32 policy MGT-16-to-LAN-32 match destination-address gate
+set security policies from-zone MGT-16 to-zone LAN-32 policy MGT-16-to-LAN-32 match application junos-ssh
+set security policies from-zone MGT-16 to-zone LAN-32 policy MGT-16-to-LAN-32 then permit
+set security policies from-zone VPN to-zone OA-72 policy TPE-OA-to-TW1-OA-72 match source-address TPE_OA-IT
+set security policies from-zone VPN to-zone OA-72 policy TPE-OA-to-TW1-OA-72 match destination-address any
+set security policies from-zone VPN to-zone OA-72 policy TPE-OA-to-TW1-OA-72 match application any
+set security policies from-zone VPN to-zone OA-72 policy TPE-OA-to-TW1-OA-72 then permit
+set security policies from-zone VPN to-zone WH-40 policy TPE-OA-to-TW1-WH-40 match source-address TPE_OA-IT
+set security policies from-zone VPN to-zone WH-40 policy TPE-OA-to-TW1-WH-40 match destination-address any
+set security policies from-zone VPN to-zone WH-40 policy TPE-OA-to-TW1-WH-40 match application any
+set security policies from-zone VPN to-zone WH-40 policy TPE-OA-to-TW1-WH-40 then permit
+set security policies from-zone LAN-32 to-zone MGT-16 policy CACTI-to-MGT-16 match source-address any
+set security policies from-zone LAN-32 to-zone MGT-16 policy CACTI-to-MGT-16 match destination-address any
+set security policies from-zone LAN-32 to-zone MGT-16 policy CACTI-to-MGT-16 match application junos-icmp-ping
+set security policies from-zone LAN-32 to-zone MGT-16 policy CACTI-to-MGT-16 match application SNMP-UDP-161-FOR-CACTI
+set security policies from-zone LAN-32 to-zone MGT-16 policy CACTI-to-MGT-16 then permit
+set security policies from-zone VPN to-zone Miner-88 policy TPE_OA-IT-to-Miner match source-address TPE_OA-IT
+set security policies from-zone VPN to-zone Miner-88 policy TPE_OA-IT-to-Miner match destination-address any
+set security policies from-zone VPN to-zone Miner-88 policy TPE_OA-IT-to-Miner match application junos-ssh
+set security policies from-zone VPN to-zone Miner-88 policy TPE_OA-IT-to-Miner match application junos-icmp-ping
+set security policies from-zone VPN to-zone Miner-88 policy TPE_OA-IT-to-Miner then permit
+set security policies from-zone Miner-88 to-zone Untrust policy Miner-to-Untrust match source-address any
+set security policies from-zone Miner-88 to-zone Untrust policy Miner-to-Untrust match destination-address any
+set security policies from-zone Miner-88 to-zone Untrust policy Miner-to-Untrust match application junos-icmp-ping
+set security policies from-zone Miner-88 to-zone Untrust policy Miner-to-Untrust match application junos-http
+set security policies from-zone Miner-88 to-zone Untrust policy Miner-to-Untrust match application junos-https
+set security policies from-zone Miner-88 to-zone Untrust policy Miner-to-Untrust match application junos-dns-udp
+set security policies from-zone Miner-88 to-zone Untrust policy Miner-to-Untrust match application junos-ntp
+set security policies from-zone Miner-88 to-zone Untrust policy Miner-to-Untrust then permit
+set security policies from-zone Miner-88 to-zone Untrust policy Miner-to-XMRPOOL match source-address any
+set security policies from-zone Miner-88 to-zone Untrust policy Miner-to-XMRPOOL match destination-address singapore01.monero.hashvault.pro
+set security policies from-zone Miner-88 to-zone Untrust policy Miner-to-XMRPOOL match application any
+set security policies from-zone Miner-88 to-zone Untrust policy Miner-to-XMRPOOL then permit
+set security policies from-zone LAN-86SHOP to-zone WH-40 policy LAN-86SHOP-to-WH-40-Printer match source-address any
+set security policies from-zone LAN-86SHOP to-zone WH-40 policy LAN-86SHOP-to-WH-40-Printer match destination-address Printer-All
+set security policies from-zone LAN-86SHOP to-zone WH-40 policy LAN-86SHOP-to-WH-40-Printer match application cup-tcp-9100
+set security policies from-zone LAN-86SHOP to-zone WH-40 policy LAN-86SHOP-to-WH-40-Printer match application junos-icmp-ping
+set security policies from-zone LAN-86SHOP to-zone WH-40 policy LAN-86SHOP-to-WH-40-Printer then permit
+set security policies from-zone OA-72 to-zone WH-40 policy OA-72-to-WH-40-Printer match source-address any
+set security policies from-zone OA-72 to-zone WH-40 policy OA-72-to-WH-40-Printer match destination-address Printer-All
+set security policies from-zone OA-72 to-zone WH-40 policy OA-72-to-WH-40-Printer match application cup-tcp-9100
+set security policies from-zone OA-72 to-zone WH-40 policy OA-72-to-WH-40-Printer match application junos-icmp-ping
+set security policies from-zone OA-72 to-zone WH-40 policy OA-72-to-WH-40-Printer then permit
+set security policies from-zone Untrust to-zone junos-host policy Allow-to-FW-Mgmt match source-address TPE_OA-IT-Untrust
+set security policies from-zone Untrust to-zone junos-host policy Allow-to-FW-Mgmt match source-address TPE_OA-LAB-Untrust
+set security policies from-zone Untrust to-zone junos-host policy Allow-to-FW-Mgmt match source-address Jacko-Home
+set security policies from-zone Untrust to-zone junos-host policy Allow-to-FW-Mgmt match destination-address any
+set security policies from-zone Untrust to-zone junos-host policy Allow-to-FW-Mgmt match application junos-https
+set security policies from-zone Untrust to-zone junos-host policy Allow-to-FW-Mgmt match application junos-ssh
+set security policies from-zone Untrust to-zone junos-host policy Allow-to-FW-Mgmt then permit
+set security policies from-zone Untrust to-zone junos-host policy Deny-to-FW-Mgmt match source-address any
+set security policies from-zone Untrust to-zone junos-host policy Deny-to-FW-Mgmt match destination-address any
+set security policies from-zone Untrust to-zone junos-host policy Deny-to-FW-Mgmt match application junos-https
+set security policies from-zone Untrust to-zone junos-host policy Deny-to-FW-Mgmt match application junos-ssh
+set security policies from-zone Untrust to-zone junos-host policy Deny-to-FW-Mgmt then deny
+set security policies from-zone Untrust to-zone junos-host policy Allow-All-Others match source-address any
+set security policies from-zone Untrust to-zone junos-host policy Allow-All-Others match destination-address any
+set security policies from-zone Untrust to-zone junos-host policy Allow-All-Others match application any
+set security policies from-zone Untrust to-zone junos-host policy Allow-All-Others then permit
+set security policies from-zone WH-40 to-zone Untrust policy PRINTER-40-TO-XEROX-MONITOR match source-address Printer-All
+set security policies from-zone WH-40 to-zone Untrust policy PRINTER-40-TO-XEROX-MONITOR match destination-address smtp-relay.gmail.com
+set security policies from-zone WH-40 to-zone Untrust policy PRINTER-40-TO-XEROX-MONITOR match destination-address XEROX-COMPANY-MONITOR
+set security policies from-zone WH-40 to-zone Untrust policy PRINTER-40-TO-XEROX-MONITOR match destination-address smtp.gmail.com
+set security policies from-zone WH-40 to-zone Untrust policy PRINTER-40-TO-XEROX-MONITOR match application junos-icmp-ping
+set security policies from-zone WH-40 to-zone Untrust policy PRINTER-40-TO-XEROX-MONITOR match application junos-https
+set security policies from-zone WH-40 to-zone Untrust policy PRINTER-40-TO-XEROX-MONITOR match application SMTP-SSL-TCP-465
+set security policies from-zone WH-40 to-zone Untrust policy PRINTER-40-TO-XEROX-MONITOR match application junos-smtp
+set security policies from-zone WH-40 to-zone Untrust policy PRINTER-40-TO-XEROX-MONITOR match application SMTP-TLS-TCP-587
+set security policies from-zone WH-40 to-zone Untrust policy PRINTER-40-TO-XEROX-MONITOR then permit
+set security policies from-zone LAN-32 to-zone LAN-86SHOP policy Cacti-to-86SHOP-FW match source-address CACTI
+set security policies from-zone LAN-32 to-zone LAN-86SHOP policy Cacti-to-86SHOP-FW match destination-address 86SHOP-FW
+set security policies from-zone LAN-32 to-zone LAN-86SHOP policy Cacti-to-86SHOP-FW match application SNMP-UDP-161-FOR-CACTI
+set security policies from-zone LAN-32 to-zone LAN-86SHOP policy Cacti-to-86SHOP-FW then permit
+set security policies from-zone WH-40 to-zone OA-72 policy WH-40_to_SECOM match source-address any
+set security policies from-zone WH-40 to-zone OA-72 policy WH-40_to_SECOM match destination-address SECOM-MONITOR
+set security policies from-zone WH-40 to-zone OA-72 policy WH-40_to_SECOM match application junos-http
+set security policies from-zone WH-40 to-zone OA-72 policy WH-40_to_SECOM then permit
+set security policies from-zone LAN-86SHOP to-zone OA-72 policy LAN-86SHOP_to_SECOM match source-address any
+set security policies from-zone LAN-86SHOP to-zone OA-72 policy LAN-86SHOP_to_SECOM match destination-address SECOM-MONITOR
+set security policies from-zone LAN-86SHOP to-zone OA-72 policy LAN-86SHOP_to_SECOM match application junos-http
+set security policies from-zone LAN-86SHOP to-zone OA-72 policy LAN-86SHOP_to_SECOM match application junos-icmp-ping
+set security policies from-zone LAN-86SHOP to-zone OA-72 policy LAN-86SHOP_to_SECOM then permit
+set security zones security-zone Untrust address-book address gmail dns-name mail.google.com
+set security zones security-zone Untrust address-book address 3G-Device 192.168.1.1/32
+set security zones security-zone Untrust address-book address smtp.gmail.com dns-name smtp.gmail.com ipv4-only
+set security zones security-zone Untrust address-book address singapore01.monero.hashvault.pro 139.99.9.133/32
+set security zones security-zone Untrust address-book address TPE_OA-IT-Untrust 60.250.151.67/32
+set security zones security-zone Untrust address-book address TPE_OA-LAB-Untrust 122.116.67.55/32
+set security zones security-zone Untrust address-book address Jacko-Home 123.204.238.168/32
+set security zones security-zone Untrust address-book address XEROX-COMPANY1 111.87.83.173/32
+set security zones security-zone Untrust address-book address XEROX-COMPANY2 111.87.109.77/32
+set security zones security-zone Untrust address-book address XEROX-COMPANY3 111.87.83.162/32
+set security zones security-zone Untrust address-book address XEROX-COMPANY4 111.87.189.65/32
+set security zones security-zone Untrust address-book address smtp-relay.gmail.com dns-name smtp-relay.gmail.com ipv4-only
+set security zones security-zone Untrust address-book address CHT-NS 168.95.1.1/32
+set security zones security-zone Untrust address-book address HQ-FW 60.250.151.67/32
+set security zones security-zone Untrust address-book address BETA-FW 210.242.122.60/32
+set security zones security-zone Untrust address-book address IDC-FW 210.242.169.93/32
+set security zones security-zone Untrust address-book address-set XEROX-COMPANY-MONITOR address XEROX-COMPANY1
+set security zones security-zone Untrust address-book address-set XEROX-COMPANY-MONITOR address XEROX-COMPANY2
+set security zones security-zone Untrust address-book address-set XEROX-COMPANY-MONITOR address XEROX-COMPANY3
+set security zones security-zone Untrust address-book address-set XEROX-COMPANY-MONITOR address XEROX-COMPANY4
+set security zones security-zone Untrust screen Untrust-Screen
+set security zones security-zone Untrust host-inbound-traffic system-services ping
+set security zones security-zone Untrust host-inbound-traffic system-services ike
+set security zones security-zone Untrust host-inbound-traffic system-services https
+set security zones security-zone Untrust host-inbound-traffic system-services ssh
+set security zones security-zone Untrust interfaces reth1.4
+set security zones security-zone Untrust interfaces reth1.502
+set security zones security-zone MGT-16 address-book address MGT-GW 10.5.16.254/32
+set security zones security-zone MGT-16 address-book address tw1-esxi001 10.5.18.1/32
+set security zones security-zone MGT-16 address-book address tw1-esxi002 10.5.18.2/32
+set security zones security-zone MGT-16 address-book address juniper-switch 10.5.16.1/32
+set security zones security-zone MGT-16 address-book address-set juniper_device address juniper-switch
+set security zones security-zone MGT-16 address-book address-set ESXI-GROUP address tw1-esxi001
+set security zones security-zone MGT-16 address-book address-set ESXI-GROUP address tw1-esxi002
+set security zones security-zone MGT-16 host-inbound-traffic system-services any-service
+set security zones security-zone MGT-16 interfaces reth1.16
+set security zones security-zone DMZ-24 address-book address YUM 10.5.24.251/32
+set security zones security-zone DMZ-24 address-book address PROXY 10.5.24.249/32
+set security zones security-zone DMZ-24 address-book address DNS 10.5.24.1/32
+set security zones security-zone DMZ-24 address-book address im.tw1.wh 10.5.24.248/32
+set security zones security-zone DMZ-24 address-book address TEST 10.5.24.254/32
+set security zones security-zone DMZ-24 address-book address PROXY-LAB 10.5.24.247/32
+set security zones security-zone DMZ-24 interfaces reth1.24 host-inbound-traffic system-services ping
+set security zones security-zone LAN-32 address-book address gate 10.5.32.251/32
+set security zones security-zone LAN-32 address-book address nis 10.5.32.249/32
+set security zones security-zone LAN-32 address-book address FDC-TW1WH_32.1 10.5.32.1/32
+set security zones security-zone LAN-32 address-book address WSUS_32.248 10.5.32.248/32
+set security zones security-zone LAN-32 address-book address SDC-TW1WH_32.2 10.5.32.2/32
+set security zones security-zone LAN-32 address-book address CardReader 10.5.32.110/32
+set security zones security-zone LAN-32 address-book address TW1-FDC-32.1 10.5.32.1/32
+set security zones security-zone LAN-32 address-book address TW1-SDC-32.2 10.5.32.2/32
+set security zones security-zone LAN-32 address-book address DHCP 10.5.32.249/32
+set security zones security-zone LAN-32 address-book address upderp 10.5.32.21/32
+set security zones security-zone LAN-32 address-book address updstock 10.5.32.22/32
+set security zones security-zone LAN-32 address-book address LAN-GW 10.5.32.254/32
+set security zones security-zone LAN-32 address-book address TW1-NAS 10.5.32.10/32
+set security zones security-zone LAN-32 address-book address CACTI 10.5.32.12/32
+set security zones security-zone LAN-32 address-book address-set TW1-DC address TW1-FDC-32.1
+set security zones security-zone LAN-32 address-book address-set TW1-DC address TW1-SDC-32.2
+set security zones security-zone LAN-32 address-book address-set UpdProg address upderp
+set security zones security-zone LAN-32 address-book address-set UpdProg address updstock
+set security zones security-zone LAN-32 address-book address-set UPDPROG-CLIENTSET address upderp
+set security zones security-zone LAN-32 address-book address-set UPDPROG-CLIENTSET address updstock
+set security zones security-zone LAN-32 address-book address-set DC address FDC-TW1WH_32.1
+set security zones security-zone LAN-32 address-book address-set DC address SDC-TW1WH_32.2
+set security zones security-zone LAN-32 interfaces reth1.32 host-inbound-traffic system-services all
+set security zones security-zone LAN-32 interfaces reth1.32 host-inbound-traffic protocols all
+set security zones security-zone IT-56 address-book address IT-GW 10.5.56.254/32
+set security zones security-zone IT-56 interfaces reth1.56 host-inbound-traffic system-services all
+set security zones security-zone IT-56 interfaces reth1.56 host-inbound-traffic system-services dhcp
+set security zones security-zone IT-56 interfaces reth1.56 host-inbound-traffic protocols all
+set security zones security-zone WIT-64 address-book address WIT-GW 10.5.64.254/32
+set security zones security-zone WIT-64 address-book address Sam 10.5.64.51/32
+set security zones security-zone WIT-64 address-book address Mingwei 10.5.64.52/32
+set security zones security-zone WIT-64 address-book address Stanly.chen 10.5.64.53/32
+set security zones security-zone WIT-64 address-book address james.chen 10.5.64.54/32
+set security zones security-zone WIT-64 address-book address-set WIT address Sam
+set security zones security-zone WIT-64 address-book address-set WIT address Mingwei
+set security zones security-zone WIT-64 address-book address-set WIT address Stanly.chen
+set security zones security-zone WIT-64 address-book address-set WIT address james.chen
+set security zones security-zone WIT-64 interfaces reth1.64 host-inbound-traffic system-services all
+set security zones security-zone WIT-64 interfaces reth1.64 host-inbound-traffic system-services dhcp
+set security zones security-zone WIT-64 interfaces reth1.64 host-inbound-traffic protocols all
+set security zones security-zone VPN address-book address beta 10.1.31.0/24
+set security zones security-zone VPN address-book address TPE_IDC-MGT_64 10.3.64.0/18
+set security zones security-zone VPN address-book address TPE_OA-IT 10.1.56.0/21
+set security zones security-zone VPN address-book address IDC-updstock 10.3.129.41/32
+set security zones security-zone VPN address-book address IDC-upderp 10.3.193.3/32
+set security zones security-zone VPN address-book address TPE_IDC-DMZ 10.3.128.0/18
+set security zones security-zone VPN address-book address TPE_OA-Beta 10.1.31.0/24
+set security zones security-zone VPN address-book address FDC_64.1 10.1.64.1/32
+set security zones security-zone VPN address-book address IDC1-DNS 10.3.128.1/32
+set security zones security-zone VPN address-book address IDC1-DNS2 10.3.129.2/32
+set security zones security-zone VPN address-book address SecomServer 10.1.50.110/32
+set security zones security-zone VPN address-book address TPE-18F_Tel-48 10.1.48.0/21
+set security zones security-zone VPN address-book address TPE_OA-YUM 10.1.24.250/32
+set security zones security-zone VPN address-book address TPE_IDC-LAN 10.3.192.0/18
+set security zones security-zone VPN address-book address TPE_OA-DNS 10.1.24.1/32
+set security zones security-zone VPN address-book address TPE_IDC-DNS 10.3.128.1/32
+set security zones security-zone VPN address-book address im.uitox-inside.com 10.1.24.241/32
+set security zones security-zone VPN address-book address cacti_24.137 10.1.24.137/32
+set security zones security-zone VPN address-book address im.tw2.wh 10.13.24.248/32
+set security zones security-zone VPN address-book address im01.uitox-inside.com 10.1.24.246/32
+set security zones security-zone VPN address-book address im02.uitox-inside.com 10.1.50.247/32
+set security zones security-zone VPN address-book address Main-FW 10.1.48.254/32
+set security zones security-zone VPN address-book address upderp_beta1_ux 10.19.153.15/32
+set security zones security-zone VPN address-book address updstock_beta1_ux 10.19.145.16/32
+set security zones security-zone VPN address-book address tdc_ux_com 10.1.64.3/32
+set security zones security-zone VPN address-book address ca_ux_com 10.1.64.5/32
+set security zones security-zone VPN address-book address DEV-DMZ 10.19.24.0/21
+set security zones security-zone VPN address-book address DEV-LAN 10.19.32.0/21
+set security zones security-zone VPN address-book address BETA-DMZ 10.19.144.0/21
+set security zones security-zone VPN address-book address BETA-LAN 10.19.152.0/21
+set security zones security-zone VPN address-book address BETA-DNS_VIP 10.19.24.1/32
+set security zones security-zone VPN address-book address BETA-DNS-1 10.19.25.1/32
+set security zones security-zone VPN address-book address BETA-DNS-2 10.19.25.2/32
+set security zones security-zone VPN address-book address TW_OA2_ansible 10.1.24.138/32
+set security zones security-zone VPN address-book address OA-Filecloud 10.1.24.240/32
+set security zones security-zone VPN address-book address stock.uitox.com 10.3.128.17/32
+set security zones security-zone VPN address-book address sdc_ux_com 10.1.64.2/32
+set security zones security-zone VPN address-book address 86SHOP-OA-DC05 192.168.6.3/32
+set security zones security-zone VPN address-book address 86SHOP-OA-LAN 192.168.6.0/24
+set security zones security-zone VPN address-book address-set im address im.uitox-inside.com
+set security zones security-zone VPN address-book address-set im address im.tw2.wh
+set security zones security-zone VPN address-book address-set im address im01.uitox-inside.com
+set security zones security-zone VPN address-book address-set im address im02.uitox-inside.com
+set security zones security-zone VPN address-book address-set BETA1_UX_UPDPROGSET address upderp_beta1_ux
+set security zones security-zone VPN address-book address-set BETA1_UX_UPDPROGSET address updstock_beta1_ux
+set security zones security-zone VPN address-book address-set DC address tdc_ux_com
+set security zones security-zone VPN address-book address-set DC address FDC_64.1
+set security zones security-zone VPN address-book address-set DC address ca_ux_com
+set security zones security-zone VPN address-book address-set DC address sdc_ux_com
+set security zones security-zone VPN address-book address-set IDC1_UX_UPDPROGSET address IDC-updstock
+set security zones security-zone VPN address-book address-set IDC1_UX_UPDPROGSET address IDC-upderp
+set security zones security-zone VPN host-inbound-traffic system-services all
+set security zones security-zone VPN host-inbound-traffic protocols all
+set security zones security-zone VPN interfaces st0.2
+set security zones security-zone VPN interfaces st0.10
+set security zones security-zone VPN interfaces st0.53
+set security zones security-zone VPN interfaces st0.522
+set security zones security-zone PDA-48 address-book address PDA-GW 10.5.48.254/32
+set security zones security-zone PDA-48 host-inbound-traffic system-services all
+set security zones security-zone PDA-48 host-inbound-traffic protocols all
+set security zones security-zone PDA-48 interfaces reth1.48 host-inbound-traffic system-services dhcp
+set security zones security-zone PDA-48 interfaces reth1.48 host-inbound-traffic system-services ping
+set security zones security-zone OA-72 address-book address OA-GW 10.5.72.254/32
+set security zones security-zone OA-72 address-book address Nydia-72.110 10.5.72.110/32
+set security zones security-zone OA-72 address-book address NYDIA 10.5.72.139/32
+set security zones security-zone OA-72 address-book address SECOM-MONITOR 10.5.75.3/32
+set security zones security-zone OA-72 interfaces reth1.72 host-inbound-traffic system-services all
+set security zones security-zone OA-72 interfaces reth1.72 host-inbound-traffic system-services dhcp
+set security zones security-zone OA-72 interfaces reth1.72 host-inbound-traffic protocols all
+set security zones security-zone WH-40 address-book address WH-GW 10.5.40.254/32
+set security zones security-zone WH-40 address-book address Printer-All 10.5.42.0/24
+set security zones security-zone WH-40 interfaces reth1.40 host-inbound-traffic system-services all
+set security zones security-zone WH-40 interfaces reth1.40 host-inbound-traffic system-services dhcp
+set security zones security-zone WH-40 interfaces reth1.40 host-inbound-traffic protocols all
+set security zones security-zone Untrust-4G host-inbound-traffic system-services ike
+set security zones security-zone Untrust-4G host-inbound-traffic system-services ping
+set security zones security-zone Untrust-4G interfaces reth1.501 host-inbound-traffic system-services ike
+set security zones security-zone Untrust-4G interfaces reth1.501 host-inbound-traffic system-services ping
+set security zones security-zone Miner-88 interfaces reth1.88 host-inbound-traffic system-services ping
+set security zones security-zone LAN-86SHOP address-book address 86SHOP-FW 10.11.101.253/32
+set security zones security-zone LAN-86SHOP interfaces reth1.86 host-inbound-traffic system-services all
+set security zones security-zone LAN-86SHOP interfaces reth1.86 host-inbound-traffic system-services dhcp
+set security zones security-zone LAN-86SHOP interfaces reth1.86 host-inbound-traffic protocols all
+set routing-instances VR-4G description Routing-instance-501
+set routing-instances VR-4G instance-type virtual-router
+set routing-instances VR-4G interface lo0.1
+set routing-instances VR-4G interface reth1.501
+set routing-instances VR-4G routing-options static route 0.0.0.0/0 next-hop 192.168.1.1
+set services rpm probe HINET-ADSL test testsvr target address 210.242.169.94
+set services rpm probe HINET-ADSL test testsvr probe-count 3
+set services rpm probe HINET-ADSL test testsvr probe-interval 15
+set services rpm probe HINET-ADSL test testsvr test-interval 10
+set services rpm probe HINET-ADSL test testsvr thresholds successive-loss 3
+set services rpm probe HINET-ADSL test testsvr thresholds total-loss 3
+set services rpm probe HINET-ADSL test testsvr destination-interface reth1.4
+set services rpm probe HINET-ADSL test testsvr next-hop 60.250.235.254
+set services ip-monitoring policy HINET-ADSL match rpm-probe HINET-ADSL
+set services ip-monitoring policy HINET-ADSL then preferred-route route 8.8.4.4/32 next-hop 210.64.74.1
+set services ip-monitoring policy HINET-ADSL then preferred-route route 0.0.0.0/0 next-hop 192.168.1.1
+set applications application NIS-1011-udp protocol udp
+set applications application NIS-1011-udp destination-port 1011
+set applications application NIS-1011-tcp protocol tcp
+set applications application NIS-1011-tcp destination-port 1011
+set applications application NIS-1012-udp protocol udp
+set applications application NIS-1012-udp destination-port 1012
+set applications application Secom-TCP-4660 protocol tcp
+set applications application Secom-TCP-4660 destination-port 4660
+set applications application Secom-UDP-4660 protocol udp
+set applications application Secom-UDP-4660 destination-port 4660
+set applications application Secom-TCP-5660 protocol tcp
+set applications application Secom-TCP-5660 destination-port 5660
+set applications application Secom-UDP-5660 protocol udp
+set applications application Secom-UDP-5660 destination-port 5660
+set applications application Kerberos-88 protocol udp
+set applications application Kerberos-88 destination-port 88
+set applications application Kerberos-TCP-88 protocol tcp
+set applications application Kerberos-TCP-88 destination-port 88
+set applications application Kerberos-TCP-464 protocol tcp
+set applications application Kerberos-TCP-464 destination-port 464
+set applications application Kerberos-UDP-464 protocol udp
+set applications application Kerberos-UDP-464 destination-port 464
+set applications application LDAP-UPD-389 protocol udp
+set applications application LDAP-UPD-389 destination-port 389
+set applications application RPC-Dynamic-TCP-Dange-10002-11200 protocol tcp
+set applications application RPC-Dynamic-TCP-Dange-10002-11200 destination-port 10002-11200
+set applications application RPC-TCP-10001 protocol tcp
+set applications application RPC-TCP-10001 destination-port 10001
+set applications application SMB-UDP-445 protocol udp
+set applications application SMB-UDP-445 destination-port 445
+set applications application PROXY-8080 protocol tcp
+set applications application PROXY-8080 destination-port 8080
+set applications application PROXY-8080 inactivity-timeout 36000
+set applications application WSUS-TCP-8530 protocol tcp
+set applications application WSUS-TCP-8530 destination-port 8530
+set applications application IM-TCP-5280 protocol tcp
+set applications application IM-TCP-5280 destination-port 5280
+set applications application IMS2S protocol tcp
+set applications application IMS2S destination-port 5269
+set applications application IMC2S protocol tcp
+set applications application IMC2S destination-port 5222
+set applications application SSH-22 protocol tcp
+set applications application SSH-22 destination-port 22
+set applications application SSH-22 inactivity-timeout never
+set applications application NETBIOS-TCP-137 protocol tcp
+set applications application NETBIOS-TCP-137 destination-port 137
+set applications application NETBIOS-UDP-137 protocol tcp
+set applications application NETBIOS-UDP-137 destination-port 137
+set applications application LDAP-UDP-389 protocol udp
+set applications application LDAP-UDP-389 destination-port 389
+set applications application RPC-Dynamic-TCP-Range-10002-11200 protocol tcp
+set applications application RPC-Dynamic-TCP-Range-10002-11200 destination-port 10002-11200
+set applications application RPC-NTFRS-TCP-10000 protocol tcp
+set applications application RPC-NTFRS-TCP-10000 destination-port 10000
+set applications application GC-TCP-3268 protocol tcp
+set applications application GC-TCP-3268 destination-port 3268
+set applications application GC-TCP-3269 protocol tcp
+set applications application GC-TCP-3269 destination-port 3269
+set applications application LDAP-TCP-636 protocol tcp
+set applications application LDAP-TCP-636 destination-port 636
+set applications application DFSR-TCP-5722 protocol tcp
+set applications application DFSR-TCP-5722 destination-port 5722
+set applications application gc-tcp-3268 protocol tcp
+set applications application gc-tcp-3268 destination-port 3268
+set applications application gc-tcp-3269 protocol tcp
+set applications application gc-tcp-3269 destination-port 3269
+set applications application MySQL-3306 protocol tcp
+set applications application MySQL-3306 destination-port 3306
+set applications application msrdp-tcp-3389 protocol tcp
+set applications application msrdp-tcp-3389 destination-port 3389
+set applications application rpc-dynamic-tcp-range-10002-12000 protocol tcp
+set applications application rpc-dynamic-tcp-range-10002-12000 destination-port 10002-12000
+set applications application SSH-830 protocol tcp
+set applications application SSH-830 destination-port 830
+set applications application SFTP-222 protocol tcp
+set applications application SFTP-222 destination-port 222
+set applications application Synology-TCP-5000 protocol tcp
+set applications application Synology-TCP-5000 destination-port 5000
+set applications application SNMP-UDP-161-FOR-CACTI protocol udp
+set applications application SNMP-UDP-161-FOR-CACTI destination-port 161
+set applications application HTTPS-Long-Session protocol tcp
+set applications application HTTPS-Long-Session destination-port 443
+set applications application HTTPS-Long-Session inactivity-timeout 36000
+set applications application HTTP-Long-Session protocol tcp
+set applications application HTTP-Long-Session destination-port 80
+set applications application HTTP-Long-Session inactivity-timeout 36000
+set applications application MS-RPC-Dynamic-TCP-Range protocol tcp
+set applications application MS-RPC-Dynamic-TCP-Range destination-port 49152-65535
+set applications application MS-RPC-Dynamic-UDP-Range protocol udp
+set applications application MS-RPC-Dynamic-UDP-Range destination-port 49152-65535
+set applications application cup-tcp-9100 protocol tcp
+set applications application cup-tcp-9100 destination-port 9100
+set applications application SMTP-SSL-TCP-465 protocol tcp
+set applications application SMTP-SSL-TCP-465 destination-port 465
+set applications application SMTP-TLS-TCP-587 protocol tcp
+set applications application SMTP-TLS-TCP-587 destination-port 587
+set applications application-set NIS application NIS-1011-udp
+set applications application-set NIS application NIS-1011-tcp
+set applications application-set NIS application NIS-1012-udp
+set applications application-set NIS application junos-sun-rpc-udp
+set applications application-set NIS application junos-sun-rpc-tcp
+set applications application-set Secom application Secom-TCP-4660
+set applications application-set Secom application Secom-UDP-4660
+set applications application-set Secom application Secom-TCP-5660
+set applications application-set Secom application Secom-UDP-5660
+set applications application-set Secom application junos-http
+set applications application-set Join-AD application Kerberos-88
+set applications application-set Join-AD application Kerberos-TCP-88
+set applications application-set Join-AD application Kerberos-TCP-464
+set applications application-set Join-AD application Kerberos-UDP-464
+set applications application-set Join-AD application LDAP-UPD-389
+set applications application-set Join-AD application RPC-Dynamic-TCP-Dange-10002-11200
+set applications application-set Join-AD application RPC-TCP-10001
+set applications application-set Join-AD application SMB-UDP-445
+set applications application-set Join-AD application junos-dns-tcp
+set applications application-set Join-AD application junos-dns-udp
+set applications application-set Join-AD application junos-ms-rpc-tcp
+set applications application-set Join-AD application junos-ms-rpc-udp
+set applications application-set Join-AD application junos-nbds
+set applications application-set Join-AD application junos-netbios-session
+set applications application-set Join-AD application junos-ntp
+set applications application-set Join-AD application junos-smb-session
+set applications application-set Join-AD application junos-ldap
+set applications application-set Join-AD application junos-icmp-ping
+set applications application-set Join-AD application LDAP-TCP-636
+set applications application-set Join-AD application MS-RPC-Dynamic-UDP-Range
+set applications application-set Join-AD application MS-RPC-Dynamic-TCP-Range
+set applications application-set Join-AD application-set GC-set
+set applications application-set DC-to-DC-Replica application junos-ms-rpc-udp
+set applications application-set DC-to-DC-Replica application junos-ms-rpc-tcp
+set applications application-set DC-to-DC-Replica application NETBIOS-TCP-137
+set applications application-set DC-to-DC-Replica application NETBIOS-UDP-137
+set applications application-set DC-to-DC-Replica application junos-nbds
+set applications application-set DC-to-DC-Replica application junos-netbios-session
+set applications application-set DC-to-DC-Replica application junos-ntp
+set applications application-set DC-to-DC-Replica application junos-ldap
+set applications application-set DC-to-DC-Replica application LDAP-UDP-389
+set applications application-set DC-to-DC-Replica application junos-dns-tcp
+set applications application-set DC-to-DC-Replica application junos-dns-udp
+set applications application-set DC-to-DC-Replica application Kerberos-88
+set applications application-set DC-to-DC-Replica application Kerberos-TCP-88
+set applications application-set DC-to-DC-Replica application junos-smb-session
+set applications application-set DC-to-DC-Replica application SMB-UDP-445
+set applications application-set DC-to-DC-Replica application RPC-NTFRS-TCP-10000
+set applications application-set DC-to-DC-Replica application RPC-TCP-10001
+set applications application-set DC-to-DC-Replica application junos-icmp-ping
+set applications application-set DC-to-DC-Replica application RPC-Dynamic-TCP-Range-10002-11200
+set applications application-set DC-to-DC-Replica application LDAP-TCP-636
+set applications application-set DC-to-DC-Replica application DFSR-TCP-5722
+set applications application-set DC-to-DC-Replica application rpc-dynamic-tcp-range-10002-12000
+set applications application-set DC-to-DC-Replica application MS-RPC-Dynamic-UDP-Range
+set applications application-set DC-to-DC-Replica application MS-RPC-Dynamic-TCP-Range
+set applications application-set DC-to-DC-Replica application-set GC-SET
+set applications application-set DC-to-DC-Replica application-set GC-set
+set applications application-set GC-SET application GC-TCP-3268
+set applications application-set GC-SET application GC-TCP-3269
+set applications application-set GC-set application gc-tcp-3268
+set applications application-set GC-set application gc-tcp-3269

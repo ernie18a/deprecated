@@ -1,0 +1,10 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "zyz/centos8"
+    config.vm.provider "vmware_desktop" do |vb|
+      vb.vmx["memsize"] = "8192"
+      vb.vmx["numvcpus"] = "4"
+    end
+    config.vm.provision "shell", inline: <<-SHELL
+    curl -fsSL https://gitlab.com/ernie18a/dotfiles/-/raw/main/curl/e.vagrant.sh | bash
+    SHELL
+end

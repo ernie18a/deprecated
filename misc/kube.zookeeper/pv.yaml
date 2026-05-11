@@ -1,0 +1,69 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvzk0
+spec:
+  storageClassName: datadir
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: "/nfs/zk0"
+    server: 192.168.1.189
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvzk1
+spec:
+  storageClassName: datadir
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: "/nfs/zk1"
+    server: 192.168.1.189
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvzk2
+spec:
+  storageClassName: datadir
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: "/nfs/zk2"
+    server: 192.168.1.189
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvzk3
+spec:
+  storageClassName: datadir
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: "/nfs/zk3"
+    server: 192.168.1.189
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvzk4
+spec:
+  storageClassName: datadir
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: "/nfs/zk4"
+    server: 192.168.1.189

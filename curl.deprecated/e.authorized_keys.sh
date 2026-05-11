@@ -1,0 +1,6 @@
+	mkdir ~/.ssh 2>/dev/null
+	chmod 0700 ~/.ssh
+	touch ~/.ssh/authorized_keys
+	echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYrEfpNhMEE5L2cG2qKJzZP7VuULT1hKYZbNF/gqjv1oL9wDOst/Nd/IksAFrWd8Zg237DxtgTjAEb48wiiAxsduPDShLDJ20JAVTgbBdstmwo7kWqAASLjxnMl4GpuNAoSwqT86E+MuYDhbzi4toSQClU8WeN7RAVnIVQX54/jg+UQ86vS1blb5FujHsgLwYqOv8epgijWz6P0r3+I+AiYjlJquUkO/hVXbZI8noPDRs+DDlo7vQxrJx1dEvyAoaQHWFYhsqGlNR0/0B8IABxJllEFar2QHOF4/7ZMvNemTvPcUaikErh60FFcltotIMAsc3Hs8in/2pGwIXuwQfr ernie@mac' >> ~/.ssh/authorized_keys
+	echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDK0Zu5musnxnCONiYfnQKGo6UrSoKODIlpDy143t+he3oyXZnSQy+YTgGRBoeepK6eIYtE13TPShf7+YnDQP9DNIK3dt8aKHg1eg0DZDA9IKE4luAx5ZNK/opZ/HLFsfHU1u6thEdxZAadkZUSMRCAGeR9Rxa3YwKKJLaDyUUns5N2xAhy5vbm+lCCOpe3ZREpXCR9e3o5CxLJ3Ptf76yB+B4cnHxzZFwmo6Lgb6S+DkH76Q/4F5XgplbQRTesXG1GDbW9VBiPdtGuXeMSQP9ppp4B8C1FRbmKTPvsw3lVj4X/G7Zplbn8OtKvpj52ksrAFiHuG4dpF+1JdprvdruD ernie@4work' >> ~/.ssh/authorized_keys
+	chmod 0600 ~/.ssh/authorized_keys

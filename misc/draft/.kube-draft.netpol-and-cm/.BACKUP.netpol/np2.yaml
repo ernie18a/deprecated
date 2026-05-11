@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: nginxx
+spec:
+  podSelector:
+    matchLabels:
+      role: nginxx
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          role: nginxx
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          role: nginxx

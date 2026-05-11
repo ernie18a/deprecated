@@ -1,0 +1,10 @@
+user www-data;
+events {
+}
+http {
+    server {
+        listen 443;
+        default_type application/octet-stream; # download instead of viewing on browser
+        root /var/www/html; # 4 downloading extra file
+    }
+}

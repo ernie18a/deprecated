@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mq0
+spec:
+  storageClassName: mnesia
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: "/nfs/mq0"
+    server: 192.168.1.189
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mq1
+spec:
+  storageClassName: mnesia
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: "/nfs/mq1"
+    server: 192.168.1.189
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mq2
+spec:
+  storageClassName: mnesia
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: "/nfs/mq2"
+    server: 192.168.1.189

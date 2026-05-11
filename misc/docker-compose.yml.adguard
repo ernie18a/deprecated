@@ -1,0 +1,17 @@
+version: "3"
+services:
+  adguard:
+    image: adguard/adguardhome
+    container_name: adguard   
+    logging:
+      driver: "json-file"     
+      options:
+        max-size: "200k"      
+        max-file: "10"        
+    ports:
+      - "80:80"
+      - "3000:3000"
+      - "53:53/udp"
+      - "53:53/tcp"
+    volumes:
+      - "./data:/opt/adguardhome/work/data"

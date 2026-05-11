@@ -1,0 +1,11 @@
+#--
+# name: c4
+# hosts: all
+# tasks:
+- name: c4 echo
+  shell: ls /tmp
+  register: echo_result
+
+- name: c4  print
+  debug:
+    var: echo_result.stdout

@@ -1,0 +1,33 @@
+version: '3'
+services:
+  grafana:
+    container_name: grafana
+    network_mode: host
+    image: grafana/grafana
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+  prometheus:
+    container_name: prometheus
+    network_mode: host
+    image: prom/prometheus
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    volumes:
+      - type: bind
+        source: ./prometheus.yml
+        target: /etc/prometheus/prometheus.yml
+  node-exporter:
+    container_name: node-exporter
+    network_mode: host
+    image: prom/node-exporter
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"

@@ -1,0 +1,30 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+# config.vm.box = "generic/centos8"
+# config.vm.box = "generic/ubuntu2010"
+# config.vm.box_version = "1"
+  config.vm.synced_folder '.', '/vagrant', disabled: true
+# config.vm.box_check_update = false
+# config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+# config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "public_network"
+# config.vm.provider "virtualbox" do |h| # virtualbox with a h.
+# config.vm.provider "virtualbox" do |vb| # virtualbox with a vb.
+  config.vm.provider "hyperv" do |h|
+#   h.enable_virtualization_extensions = true
+    h.ip_address_timeout = 20
+    h.cpus = 4
+      h.memory = 4096
+      h.maxmemory = 10240
+#     h.vm_integration_services = {
+#       guest_service_interface: true,
+#       CustomVMSRV: true
+#     }
+    end
+  config.vm.provision "shell", inline: <<-SHELL
+    curl -fsSL https://gitlab.com/ernie18a/dotfiles/-/raw/main/curl/e.vagrant.sh | bash   
+  SHELL
+# config.vm.provision "shell" do |s|
+#   s.inline = "curl -fsSL https://gitlab.com/ernie18a/dotfiles/-/raw/main/curl/danger.zone.sh | bash "
+# end
+end

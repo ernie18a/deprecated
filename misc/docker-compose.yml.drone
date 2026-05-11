@@ -1,0 +1,15 @@
+version: "3"
+services:
+  drone:
+    image: drone/drone
+    container_name: drone
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "80:80"
+      - "445:443" # host:container

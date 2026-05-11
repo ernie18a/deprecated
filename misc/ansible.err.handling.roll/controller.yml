@@ -1,0 +1,8 @@
+---
+- name: RC controller
+  user: root
+  hosts: all
+  roles:
+  - c2
+  - c3
+  - c4

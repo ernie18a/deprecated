@@ -1,0 +1,51 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|  # https://docs.vagrantup.com.
+  # https://www.vagrantup.com/docs
+  # boxes at https://vagrantcloud.com/searcvb.  config.vm.synced_folder '.', '/vagrant', disabled: true
+  config.vm.box = "ubuntu/trusty64"
+# config.vm.box = "centos/7"
+# config.vm.box = "geerlingguy/centos7"
+# config.vm.box = "3rnie/CentOS"
+# config.vm.box = "3rnie/kubernetes"
+# config.vm.box_version = "1"
+
+  # `vagrant box outdated`. This is not recommended.
+  # config.vm.box_check_update = false
+  # config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  # via 127.0.0.1 to disable public access
+  # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+  # config.vm.network "private_network", type: "dhcp"
+
+  # config.vm.network "private_network", ip: "192.168.33.10"
+#   config.vm.network "public_network"
+#   config.vm.provider "hyperv" do |h|
+#   config.vm.network "private_network", ip: "192.168.50.100"
+    config.vm.network "private_network", ip: "192.168.50.12"
+#   config.vm.network "private_network", ip: "192.168.1.11"
+#     virtualbox__intnet: true
+    config.vm.provider "virtualbox" do |vb|
+#     vb.enable_virtualization_extensions = true
+#     vb.ip_address_timeout = 20
+      vb.cpus = 4
+#     vb.memory = 4096
+#     vb.maxmemory = 10240
+#     vb.vm_integration_services = {
+#       guest_service_interface: true,
+#       CustomVMSRV: true
+#     }
+    end
+#
+#   config.vm.provider "virtualbox" do |vb|
+#     vb.gui = false
+#     vb.memory = "8192"
+#     vb.cpus = "4"
+#   end
+    config.vm.provision "shell", inline: <<-SHELL
+      curl -fsSL https://gitlab.com/ernie18a/dotfiles/-/raw/main/curl/e.vagrant.sh | bash   
+    SHELL
+# config.vm.provision "shell" do |s|
+#   s.inline = "curl -fsSL https://gitlab.com/ernie18a/dotfiles/-/raw/main/curl/danger.zone.sh | bash "
+# end
+end

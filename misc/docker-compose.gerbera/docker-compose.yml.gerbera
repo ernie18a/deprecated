@@ -1,0 +1,11 @@
+---
+version: "3"
+services:
+  gerbera:
+    image: gerbera/gerbera
+    ports:
+      - "80:49494"
+    container_name: gerbera
+    volumes:
+      - ./gerbera-config:/var/run/gerbera
+      - /var/lib/transmission-daemon/downloads:/content

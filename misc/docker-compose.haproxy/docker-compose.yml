@@ -1,0 +1,16 @@
+version: "3"
+services:
+  haproxy:
+    image: haproxy
+    container_name: haproxy
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    ports:
+      - 6443:6443
+      - 9000:9000 # stats gui

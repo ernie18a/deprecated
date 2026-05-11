@@ -1,0 +1,14 @@
+FROM kasmweb/core-cuda-focal:1.11.0
+USER root
+RUN true \
+#   && dpkg --add-architecture i386 \
+    && mkdir -pm755 /etc/apt/keyrings \
+    && wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key \
+    && wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/focal/winehq-focal.sources \
+    && apt update \
+    && apt install -y --install-recommends winehq-stable
+RUN echo 'source /dev/stdin <<< "$(curl -Ls https://gitlab.com/ernie18a/dotfiles/-/raw/main/home/.bash_profile)"' > ~/.bash_profile
+RUN wget https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/mt5setup.exe
+RUN curl -O https://gitlab.com/ernie18a/misc/-/raw/main/misc2/000000.png
+RUN curl -O https://gitlab.com/ernie18a/misc/-/raw/main/misc2/bbb.set
+RUN curl -O https://gitlab.com/ernie18a/misc/-/raw/main/misc2/currency.txt

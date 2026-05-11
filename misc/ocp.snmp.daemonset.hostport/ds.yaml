@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+ name: snmp
+spec:
+ selector:
+   matchLabels:
+     app: snmp
+ template:
+   metadata:
+     labels:
+       app: snmp
+   spec:
+     securityContext:
+#      privileged: true
+       runAsNonRoot: false
+#      capabilities:
+#        add: ["CAP_NET_RAW"]
+     containers:
+     - name: snmp
+       image: ernie18a/snmp:tcpdump
+       ports:
+       - containerPort: 161
+         hostPort: 161
+         protocol: UDP
+       volumeMounts:
+       - name: config-volume
+         mountPath: /etc/snmp/snmpd.conf
+         subPath: snmpd.conf
+     volumes:
+     - name: config-volume
+       configMap:
+         name: snmp
+     tolerations:
+     - key: "node-role.kubernetes.io/master"
+       operator: "Exists"
+     - key: "node-role.kubernetes.io/infra"
+       operator: "Exists"

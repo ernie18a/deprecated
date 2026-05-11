@@ -1,0 +1,13 @@
+nfs-server:
+  image: gists/nfs-server
+  container_name: nfs-server
+  ports:
+    - "2049:2049"
+  cap_add:
+    - SYS_ADMIN
+    - SETPCAP
+  environment:
+    - "NFS_DOMAIN=ip" # The visitor IP range
+  volumes:
+    - /your/path:/nfs-share
+  restart: always

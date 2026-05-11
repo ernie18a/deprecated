@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: psql4demo
+  labels:
+    app: psql4demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: psql4demo
+  template:
+    metadata:
+      labels:
+        app: psql4demo
+    spec:
+      containers:
+      - name: psql4demo
+        image: postgres
+        envFrom:
+        - configMapRef:
+            name: postgres-config
+        ports:
+        - containerPort: 5432

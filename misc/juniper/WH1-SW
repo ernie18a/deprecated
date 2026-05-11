@@ -1,0 +1,224 @@
+set version 12.3R12-S7
+set system host-name Core.SW.TW1.WH
+set system auto-snapshot
+set system root-authentication encrypted-password "$1$s2cx/GXz$MZzaiq.E9QBCHXVp8tqUK."
+set system name-server 10.5.24.1
+set system login class Monitor permissions clear
+set system login class Monitor permissions configure
+set system login class Monitor permissions interface-control
+set system login class Monitor permissions secret
+set system login class Monitor permissions view
+set system login class Monitor permissions view-configuration
+set system login class Monitor allow-configuration-regexps "interfaces .*"
+set system login user ernie uid 2000
+set system login user ernie class super-user
+set system login user ernie authentication encrypted-password "$1$oDTHeJlE$ja/JwVMpSCx6Bqv4YfJh.0"
+set system login user jacko full-name "Jacko Yu"
+set system login user jacko uid 2001
+set system login user jacko class super-user
+set system login user jacko authentication encrypted-password bGxIAyvUqe/fA
+set system login user joshc uid 2005
+set system login user joshc class super-user
+set system login user joshc authentication encrypted-password "$1$D.vVKb60$JBHU/JEi6e/OA3uFX.puz0"
+set system login user monitor uid 2002
+set system login user monitor class Monitor
+set system login user monitor authentication encrypted-password "$1$NI.wUsjx$Vau0EPbhkIpwkIjAcJ7tm0"
+set system services ssh root-login deny
+set system services ssh protocol-version v2
+set system services ssh max-sessions-per-connection 5
+set system services netconf ssh
+set system syslog user * any emergency
+set system syslog file messages any notice
+set system syslog file messages authorization info
+set system syslog file interactive-commands interactive-commands any
+set system max-configurations-on-flash 49
+set system archival configuration transfer-on-commit
+set system archival configuration archive-sites "ftp://tw1.wh_sw@10.3.64.221:/" password "$9$kPz60BESyKP5F/t0hcYgoaDk"
+set system commit synchronize
+set system ntp boot-server 10.5.24.1
+set system ntp server 10.5.24.1
+set chassis aggregated-devices ethernet device-count 32
+set chassis alarm management-ethernet link-down ignore
+set interfaces ge-0/0/0 unit 0 family ethernet-switching vlan members OA-72
+set interfaces ge-0/0/1 description " Inside-Printer "
+set interfaces ge-0/0/1 unit 0 family ethernet-switching vlan members OA-72
+set interfaces ge-0/0/2 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ge-0/0/3 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ge-0/0/4 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ge-0/0/5 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ge-0/0/6 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ge-0/0/7 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ge-0/0/8 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ge-0/0/9 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ge-0/0/10 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ge-0/0/22 ether-options 802.3ad ae7
+set interfaces ge-0/0/23 ether-options 802.3ad ae7
+set interfaces ge-0/0/24 ether-options 802.3ad ae6
+set interfaces ge-0/0/25 ether-options 802.3ad ae6
+set interfaces ge-0/0/26 ether-options 802.3ad ae6
+set interfaces ge-0/0/27 ether-options 802.3ad ae6
+set interfaces ge-0/0/28 ether-options 802.3ad ae5
+set interfaces ge-0/0/29 ether-options 802.3ad ae5
+set interfaces ge-0/0/30 ether-options 802.3ad ae5
+set interfaces ge-0/0/31 ether-options 802.3ad ae5
+set interfaces ge-0/0/32 description " Ruckus Controller01 "
+set interfaces ge-0/0/32 unit 0 family ethernet-switching port-mode trunk
+set interfaces ge-0/0/32 unit 0 family ethernet-switching vlan members MGT-16
+set interfaces ge-0/0/32 unit 0 family ethernet-switching vlan members AP-48
+set interfaces ge-0/0/32 unit 0 family ethernet-switching vlan members OA-72
+set interfaces ge-0/0/33 description " DELL PowerConnect 6224P 1/g23 "
+set interfaces ge-0/0/33 ether-options 802.3ad ae20
+set interfaces ge-0/0/34 description " ESXi001 NIC0 "
+set interfaces ge-0/0/34 ether-options 802.3ad lacp force-up
+set interfaces ge-0/0/34 ether-options 802.3ad ae3
+set interfaces ge-0/0/35 description " ESXi001 NIC1 "
+set interfaces ge-0/0/35 ether-options 802.3ad lacp force-up
+set interfaces ge-0/0/35 ether-options 802.3ad ae3
+set interfaces ge-0/0/36 description " ESXi001 NIC0 "
+set interfaces ge-0/0/36 ether-options 802.3ad lacp force-up
+set interfaces ge-0/0/36 ether-options 802.3ad ae4
+set interfaces ge-0/0/37 description " ESXi001 NIC1 "
+set interfaces ge-0/0/37 ether-options 802.3ad lacp force-up
+set interfaces ge-0/0/37 ether-options 802.3ad ae4
+set interfaces ge-0/0/38 description " ESXi001 iDRAC "
+set interfaces ge-0/0/38 unit 0 family ethernet-switching vlan members MGT-16
+set interfaces ge-0/0/39 description " Liebert UPS "
+set interfaces ge-0/0/39 unit 0 family ethernet-switching vlan members MGT-16
+set interfaces ge-0/0/40 description " FWA Port 0/0 "
+set interfaces ge-0/0/40 ether-options 802.3ad ae1
+set interfaces ge-0/0/41 description " FWA Port 0/1 "
+set interfaces ge-0/0/41 ether-options 802.3ad ae1
+set interfaces ge-0/0/42 description " FWA Port 0/2 "
+set interfaces ge-0/0/42 ether-options 802.3ad ae1
+set interfaces ge-0/0/43 description " FWA Port 0/3 "
+set interfaces ge-0/0/43 ether-options 802.3ad ae1
+set interfaces ge-0/0/44 description " Hinet 33Y179203 "
+set interfaces ge-0/0/44 unit 0 family ethernet-switching vlan members WAN1
+set interfaces ge-0/0/45 description " DrayTek LAN "
+set interfaces ge-0/0/45 unit 0 family ethernet-switching vlan members DVR-MGT-516
+set interfaces ge-0/0/46 unit 0
+set interfaces ge-0/0/47 unit 0
+set interfaces ge-1/0/0 unit 0 family ethernet-switching vlan members OA-72
+set interfaces ge-1/0/1 unit 0 family ethernet-switching vlan members DVR-MGT-516
+set interfaces ge-1/0/2 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ge-1/0/3 unit 0 family ethernet-switching vlan members DVR-MGT-516
+set interfaces ge-1/0/4 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ge-1/0/5 unit 0 family ethernet-switching vlan members MGT-16
+set interfaces ge-1/0/6 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ge-1/0/7 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ge-1/0/8 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ge-1/0/9 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ge-1/0/10 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ge-1/0/11 unit 0 family ethernet-switching vlan members HINET4G-501
+set interfaces ge-1/0/22 ether-options 802.3ad ae7
+set interfaces ge-1/0/23 ether-options 802.3ad ae7
+set interfaces ge-1/0/24 ether-options 802.3ad ae6
+set interfaces ge-1/0/25 ether-options 802.3ad ae6
+set interfaces ge-1/0/26 ether-options 802.3ad ae6
+set interfaces ge-1/0/27 ether-options 802.3ad ae6
+set interfaces ge-1/0/28 ether-options 802.3ad ae5
+set interfaces ge-1/0/29 ether-options 802.3ad ae5
+set interfaces ge-1/0/30 ether-options 802.3ad ae5
+set interfaces ge-1/0/31 ether-options 802.3ad ae5
+set interfaces ge-1/0/32 description " Ruckus Controller01 "
+set interfaces ge-1/0/32 unit 0 family ethernet-switching port-mode trunk
+set interfaces ge-1/0/32 unit 0 family ethernet-switching vlan members MGT-16
+set interfaces ge-1/0/32 unit 0 family ethernet-switching vlan members AP-48
+set interfaces ge-1/0/32 unit 0 family ethernet-switching vlan members OA-72
+set interfaces ge-1/0/33 description " DELL PowerConnect 6224P 1/g24 "
+set interfaces ge-1/0/33 ether-options 802.3ad ae20
+set interfaces ge-1/0/34 description " ESXi001 NIC2 "
+set interfaces ge-1/0/34 ether-options 802.3ad lacp force-up
+set interfaces ge-1/0/34 ether-options 802.3ad ae3
+set interfaces ge-1/0/35 description " ESXi001 NIC3 "
+set interfaces ge-1/0/35 ether-options 802.3ad lacp force-up
+set interfaces ge-1/0/35 ether-options 802.3ad ae3
+set interfaces ge-1/0/36 description " ESXi001 NIC2 "
+set interfaces ge-1/0/36 ether-options 802.3ad lacp force-up
+set interfaces ge-1/0/36 ether-options 802.3ad ae4
+set interfaces ge-1/0/37 description " ESXi001 NIC3 "
+set interfaces ge-1/0/37 ether-options 802.3ad lacp force-up
+set interfaces ge-1/0/37 ether-options 802.3ad ae4
+set interfaces ge-1/0/38 description " ESXi002 iDRAC "
+set interfaces ge-1/0/38 unit 0 family ethernet-switching vlan members MGT-16
+set interfaces ge-1/0/39 description " Management Port "
+set interfaces ge-1/0/39 unit 0 family ethernet-switching vlan members MGT-16
+set interfaces ge-1/0/40 description " FWB Port 0/0 "
+set interfaces ge-1/0/40 ether-options 802.3ad ae2
+set interfaces ge-1/0/41 description " FWB Port 0/1 "
+set interfaces ge-1/0/41 ether-options 802.3ad ae2
+set interfaces ge-1/0/42 description " FWB Port 0/2 "
+set interfaces ge-1/0/42 ether-options 802.3ad ae2
+set interfaces ge-1/0/43 description " FWB Port 0/3 "
+set interfaces ge-1/0/43 ether-options 802.3ad ae2
+set interfaces ge-1/0/44 description " Hinet 4G "
+set interfaces ge-1/0/44 unit 0 family ethernet-switching vlan members HINET4G-501
+set interfaces ge-1/0/45 description " Fetnet 33Y237012 "
+set interfaces ge-1/0/45 unit 0 family ethernet-switching vlan members WAN2
+set interfaces ge-1/0/46 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ge-1/0/47 unit 0 family ethernet-switching vlan members LAN-86SHOP
+set interfaces ae1 description " FWA "
+set interfaces ae1 unit 0 family ethernet-switching port-mode trunk
+set interfaces ae1 unit 0 family ethernet-switching vlan members all
+set interfaces ae2 description " FWB "
+set interfaces ae2 unit 0 family ethernet-switching port-mode trunk
+set interfaces ae2 unit 0 family ethernet-switching vlan members all
+set interfaces ae3 description " ESXi001 "
+set interfaces ae3 mtu 9216
+set interfaces ae3 aggregated-ether-options lacp active
+set interfaces ae3 unit 0 family ethernet-switching port-mode trunk
+set interfaces ae3 unit 0 family ethernet-switching vlan members all
+set interfaces ae4 description " ESXi002 "
+set interfaces ae4 mtu 9216
+set interfaces ae4 aggregated-ether-options lacp active
+set interfaces ae4 unit 0 family ethernet-switching port-mode trunk
+set interfaces ae4 unit 0 family ethernet-switching vlan members all
+set interfaces ae5 description " To Rolling-Steel Gate "
+set interfaces ae5 aggregated-ether-options lacp active
+set interfaces ae5 unit 0 family ethernet-switching port-mode trunk
+set interfaces ae5 unit 0 family ethernet-switching vlan members all
+set interfaces ae6 description " to Big Screen area "
+set interfaces ae6 aggregated-ether-options lacp active
+set interfaces ae6 unit 0 family ethernet-switching port-mode trunk
+set interfaces ae6 unit 0 family ethernet-switching vlan members all
+set interfaces ae7 description " to Mobile Office "
+set interfaces ae7 aggregated-ether-options lacp active
+set interfaces ae7 unit 0 family ethernet-switching port-mode trunk
+set interfaces ae7 unit 0 family ethernet-switching vlan members all
+set interfaces ae20 description " DELL PowerConnect 6224P "
+set interfaces ae20 aggregated-ether-options lacp active
+set interfaces ae20 unit 0 family ethernet-switching port-mode trunk
+set interfaces ae20 unit 0 family ethernet-switching vlan members WH-40
+set interfaces ae20 unit 0 family ethernet-switching vlan members AP-48
+set interfaces ae20 unit 0 family ethernet-switching vlan members MGT-16
+set interfaces ae20 unit 0 family ethernet-switching vlan members OA-72
+set interfaces vlan unit 16 family inet address 10.5.16.1/21
+set snmp community uitox authorization read-only
+set routing-options static route 0.0.0.0/0 next-hop 10.5.16.254
+set protocols igmp-snooping vlan all
+set protocols rstp
+set protocols lldp interface all
+set protocols lldp-med interface all
+set ethernet-switching-options storm-control interface all
+set vlans AP-48 vlan-id 48
+set vlans DMZ-24 vlan-id 24
+set vlans DVR-MGT-516 vlan-id 516
+set vlans HINET4G-501 vlan-id 501
+set vlans IT-56 vlan-id 56
+set vlans LAN-32 vlan-id 32
+set vlans LAN-86SHOP vlan-id 86
+set vlans MGT-16 vlan-id 16
+set vlans MGT-16 l3-interface vlan.16
+set vlans Miner-88 vlan-id 88
+set vlans OA-72 vlan-id 72
+set vlans VPN-3 vlan-id 3
+set vlans WAN1 vlan-id 4
+set vlans WAN2 vlan-id 502
+set vlans WH-40 vlan-id 40
+set vlans WIT-64 vlan-id 64
+set virtual-chassis preprovisioned
+set virtual-chassis no-split-detection
+set virtual-chassis member 0 role routing-engine
+set virtual-chassis member 0 serial-number CU0212368730
+set virtual-chassis member 1 role routing-engine
+set virtual-chassis member 1 serial-number CU0212368728

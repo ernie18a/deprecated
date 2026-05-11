@@ -1,0 +1,30 @@
+version: '3'
+services:
+    pg:
+        container_name: postgresql
+        environment:
+            - POSTGRESQL_USER=quayuser
+            - POSTGRESQL_PASSWORD=quaypass
+            - POSTGRESQL_DATABASE=quay
+            - POSTGRESQL_ADMIN_PASSWORD=adminpass
+        ports:
+            - '5432:5432'
+        volumes:
+            - '/QUAY/postgres-quay:/var/lib/pgsql/data:Z'
+        image: 'registry.redhat.io/rhel8/postgresql-10:1'
+    redis:
+        container_name: redis
+        ports:
+            - '6379:6379'
+        environment:
+            - REDIS_PASSWORD=strongpassword
+        image: 'registry.redhat.io/rhel8/redis-5:1'
+    quay:
+        ports:
+            - '80:8080'
+            - '443:8443'
+        container_name: quay
+        volumes:
+            - '/QUAY/config:/conf/stack:Z'
+            - '/QUAY/storage:/datastorage:Z'
+        image: 'registry.redhat.io/quay/quay-rhel8:v3.7.3'

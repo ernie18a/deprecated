@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app4demo
+  labels:
+    app: app4demo
+spec:
+  containers:
+  - name: app4demo
+    image: nginx

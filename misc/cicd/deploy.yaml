@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-ernie18a
+  name: nginx-ernie18a
+spec:
+  selector:
+    matchLabels:
+      app: nginx-ernie18a
+  template:
+    metadata:
+      labels:
+        app: nginx-ernie18a
+    spec:
+      containers:
+      - image: ernie18a/nginx:v1
+        name: nginx

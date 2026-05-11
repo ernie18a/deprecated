@@ -1,0 +1,19 @@
+version: "3"
+services:
+  sonarqube:
+    hostname: "sonarqube"
+    image: sonarqube
+    container_name: sonarqube
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    volumes:
+      - /SONARQUBE/data:/opt/sonarqube/data
+      - /SONARQUBE/logs:/opt/sonarqube/logs
+      - /SONARQUBE/extensions:/opt/sonarqube/extensions
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "9000:9000"

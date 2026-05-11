@@ -1,0 +1,8 @@
+---
+- name: none.zero echo
+  shell: echo "greeting from none zero"
+  register: output
+
+- name: none.zero Print
+  debug:
+    var: output.stdout

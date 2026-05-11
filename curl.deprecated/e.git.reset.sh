@@ -1,0 +1,1 @@
+git checkout --orphan temp_branch && git add -A && git commit -m "Initial commit" && git branch -D main && git branch -m main && git push -f origin main && git gc --prune=now --aggressive ; git push --set-upstream origin main

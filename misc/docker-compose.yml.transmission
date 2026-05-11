@@ -1,0 +1,16 @@
+version: '3'
+services:
+  linuxserver:
+    container_name: transmission
+    image: 'linuxserver/transmission'
+    environment:
+      - USER=e
+      - PASS=3
+    ports:
+      - '8091:9091'
+      - '51413:51413'
+      - '51413:51413/udp'
+    volumes:
+      - './config:/config'
+      - './downloads:/downloads'
+    restart: unless-stopped

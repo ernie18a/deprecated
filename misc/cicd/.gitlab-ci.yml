@@ -1,0 +1,73 @@
+stages:
+  - docker-build
+  - k8s-deploy-dev
+  - test-dev
+  - build-master
+  - test-master
+# docker-build
+docker-build:
+  stage: docker-build
+  script:
+    - echo running\ docker\ build\ tag\ and\ push
+# dev
+deploy1-dev:
+  stage: k8s-deploy-dev
+  tags:
+    - "dev-114"
+  script:
+    - kubectl apply -f deploy.yaml
+service2-dev:
+  tags:
+    - "dev-114"
+  stage: k8s-deploy-dev
+# when: manual
+  script:
+    - kubectl apply -f svc.yaml
+test1-dev:
+  stage: test-dev
+# needs:
+#   - job: service-dev
+  script:
+    - curl 129.146.168.114:30888
+  allow_failure: true # via public gitlab runner
+test2-dev:
+  stage: test-dev
+# needs:
+#   - job: service-dev
+  tags:
+    - "dev-114"
+  script:
+    - curl 129.146.168.114:30888
+# master
+deploy1-master:
+  stage: build-master
+  only:
+  - master
+  tags:
+    - "master-39"
+  script:
+    - kubectl apply -f deploy.yaml
+deploy2-master:
+  tags:
+    - "master-39"
+  stage: build-master
+  only:
+  - master
+# when: manual
+  script:
+    - kubectl apply -f svc.yaml
+test1-master:
+  stage: test-master
+  only:
+  - master
+  script:
+    - curl 129.146.241.39:30888
+  allow_failure: true # via public gitlab runner
+test2-master:
+  stage: test-master
+  only:
+  - master
+  tags:
+    - "master-39"
+  script:
+    - curl 129.146.241.39:30888

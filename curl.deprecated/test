@@ -1,0 +1,20 @@
+#!/bin/bash
+	echo default
+    touch default
+case "$1" in
+  a)
+	echo a
+    touch a
+    ;;
+  b)
+        echo b
+        touch b
+    ;;
+  *)
+    echo "Usage: run.sh [wsl|ampere|vm]"
+    exit 1
+    ;;
+esac
+# endding
+	echo endding
+    touch endding

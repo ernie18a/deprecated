@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: command-demo
+  labels:
+    purpose: demonstrate-command
+spec:
+  containers:
+  - name: command-demo-container
+    image: debian
+#   command: ["tail"]
+#   args: ["-f", "/dev/null"]
+    env:
+    - name: fq
+      value: "fqmd"
+    command: ["/bin/echo"]
+    args: ["$(fq)"]
+#   command: ["/bin/sh"]
+#   args: ["-c", "while true; do echo hello; sleep 10;done"]
+  restartPolicy: OnFailure

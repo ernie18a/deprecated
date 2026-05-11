@@ -1,0 +1,14 @@
+version: '3'
+services:
+  ss:
+    container_name: cc
+    image: tensorflow/tensorflow:latest-gpu
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: ["gpu"]
+    volumes:
+      - ${PWD}/gpu.py:/app/gpu.py
+    entrypoint: python3 /app/gpu.py
